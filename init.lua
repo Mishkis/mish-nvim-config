@@ -22,6 +22,7 @@ vim.opt.rnu = true
 vim.opt.cursorline = true
 
 vim.cmd[[hi StatusColumn guifg=#c98cd0 guibg=#453548]]
-vim.opt.stc = '%#StatusColumn# %=%r│ '
+vim.cmd[[hi StatusColumnSelected guifg=#e3cee9 guibg=#6f5870]]
+vim.opt.stc = '%=%#StatusColumnSelected#%{v:relnum<=1?v:relnum."│  ":""}%#StatusColumn#%=%{v:relnum>1?v:relnum."│ ":""}'
 
 vim.opt.cb = 'unnamedplus'
