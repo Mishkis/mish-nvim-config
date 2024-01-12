@@ -1,3 +1,5 @@
+require("comfypurple")
+
 vim.opt.acd = true
 vim.opt.cdhome = true
 
