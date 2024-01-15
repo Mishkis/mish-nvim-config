@@ -29,5 +29,6 @@ vim.opt.stc = '%=%#CursorLineNr#%{v:relnum<=1?v:relnum."│  ":""}%#LineNr#%=%{v
 
 vim.opt.expandtab = true
 vim.opt.tabstop = 5
+vim.opt.shiftwidth = 5
 
 vim.opt.cb = 'unnamedplus'
