@@ -33,3 +33,5 @@ vim.api.nvim_create_autocmd("ModeChanged", {
           ModeUpdate(match[1], match[2], match[3])
 	end
 })
+
+ModeUpdate("NORMAL", col.normalModeFG, col.normalModeBG)
