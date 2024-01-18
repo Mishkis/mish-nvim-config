@@ -39,6 +39,12 @@ vim.opt.scrolloff = 1
 
 vim.opt.tildeop = true
 
+vim.opt.virtualedit = 'block'
+
 vim.opt.cb = 'unnamedplus'
+
+vim.opt.inccommand = 'split'
+
+vim.opt.termguicolors = true
 
 vim.opt.shellslash = true
