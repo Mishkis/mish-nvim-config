@@ -37,6 +37,8 @@ vim.opt.shiftwidth = 5
 
 vim.opt.scrolloff = 1
 
-vim.opt.tildeop = "true"
+vim.opt.tildeop = true
 
 vim.opt.cb = 'unnamedplus'
+
+vim.opt.shellslash = true
