@@ -1,5 +1,5 @@
-require("comfypurple")
-require("utils/modemanager")
+require("theme/comfypurple")
+require("autocmds/modemanager")
 
 vim.opt.acd = true
 vim.opt.cdhome = true

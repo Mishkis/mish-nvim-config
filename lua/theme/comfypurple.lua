@@ -1,4 +1,4 @@
-local col = require("colors")
+local col = require("theme/colors")
 
 local highlights = {
 	Cursor = {fg = col.normalModeFG, bg = col.normalModeBG},

@@ -1,4 +1,4 @@
-local col = require("colors")
+local col = require("theme/colors")
 
 local changedHighlights = {
      "Cursor",
