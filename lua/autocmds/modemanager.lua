@@ -21,18 +21,18 @@ vim.api.nvim_create_autocmd("ModeChanged", {
           local matchingString = {
                ["n"] = { "NORMAL", { col.normalModeFG, col.normalModeBG, col.normalModeBlack }},
                ["v"] = { "VISUAL", { col.visualModeFG, col.visualModeBG, col.visualModeBlack }},
-			["\22"] = { "VISUAL", { col.visualModeFG, col.visualModeBG, col.visualModeBlack }},
-			["s"] = { "SELECT", { col.visualModeFG, col.visualModeBG, col.visualModeBlack }},
-			["\19"] = { "SELECT", { col.visualModeFG, col.visualModeBG, col.visualModeBlack }},
-			["i"] = { "INSERT", { col.insertModeFG, col.insertModeBG, col.insertModeBlack }},
-			["r"] = { "REPLACE", { col.replaceModeFG, col.replaceModeBG, col.replaceModeBlack }},
-			["c"] = { "COMMAND", { col.commandModeFG, col.commandModeBG, col.commandModeBlack }},
-			["t"] = { "TERMINAL", { col.commandModeFG, col.commandModeBG, col.commandModeBlack }},
-		}
+               ["\22"] = { "VISUAL", { col.visualModeFG, col.visualModeBG, col.visualModeBlack }},
+               ["s"] = { "SELECT", { col.visualModeFG, col.visualModeBG, col.visualModeBlack }},
+               ["\19"] = { "SELECT", { col.visualModeFG, col.visualModeBG, col.visualModeBlack }},
+               ["i"] = { "INSERT", { col.insertModeFG, col.insertModeBG, col.insertModeBlack }},
+               ["r"] = { "REPLACE", { col.replaceModeFG, col.replaceModeBG, col.replaceModeBlack }},
+               ["c"] = { "COMMAND", { col.commandModeFG, col.commandModeBG, col.commandModeBlack }},
+               ["t"] = { "TERMINAL", { col.commandModeFG, col.commandModeBG, col.commandModeBlack }},
+          }
           local match = matchingString[charToMatch]
 
           ModeUpdate(match[1], match[2])
-	end
+     end
 })
 
 ModeUpdate("NORMAL", { col.normalModeFG, col.normalModeBG, col.normalModeBlack })

@@ -1,7 +1,7 @@
 return {
-	--Mode Colors
-	normalModeFG = "#5a3d6a",
-	normalModeBG = "#f1d7f2",
+     --Mode Colors
+     normalModeFG = "#5a3d6a",
+     normalModeBG = "#f1d7f2",
      normalModeBlack = "#1d1b1e",
 
      insertModeFG = "#33553e",
@@ -20,18 +20,18 @@ return {
      visualModeBG = "#c4eff7",
      visualModeBlack = "#1b1d1e",
 
-	--Background
-	background = "#2d282f",
-	lightBackground = "#463a48",
-	text = "#f6e6fb",
+     --Background
+     background = "#2d282f",
+     lightBackground = "#463a48",
+     text = "#f6e6fb",
 
-	--General Colors
-	whitePink = "#e3cee9",
-	pink = "#c98cd0",
-	lightGreyPink = "#846783",
-	greyPink = "#6f5870",
-	darkPurple = "#453548",
+     --General Colors
+     whitePink = "#e3cee9",
+     pink = "#c98cd0",
+     lightGreyPink = "#846783",
+     greyPink = "#6f5870",
+     darkPurple = "#453548",
      lightRed = "#d99aa7",
      red = "#c95873",
-	black = "#252226",
+     black = "#252226",
 }
