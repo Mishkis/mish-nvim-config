@@ -1,3 +1,9 @@
+local options = {
+     change_detection = {
+          enabled = false,
+     },
+}
+
 -- Load lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -13,4 +19,4 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Setup plugins from plugins folder using lazyvim plugins.lua
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", options)
