@@ -1,5 +1,4 @@
 require("options")
-require("lazyloader")
-require("theme/comfypurple")
-require("autocmdloader")
-
+require("lazy_loader")
+require("theme/comfy_purple")
+require("autocmd_loader")
