@@ -1,4 +1,4 @@
-local languages = { "c", "lua", "vim", "vimdoc", "query", "python", "c_sharp", "javascript"} 
+local languages = { "c", "lua", "vim", "vimdoc", "query", "python", "c_sharp", "javascript", "markdown"} 
 
 return {
      "nvim-treesitter/nvim-treesitter",
