@@ -10,6 +10,8 @@ local highlights = {
     MsgArea = {fg = col.text, bg = col.black},
     Visual = {bg = col.lightGreyPink},
 
+    Search = {fg = col.background, bg = col.lightRed},
+
     --Tab selection, menus
     PMenu = {fg = col.text, bg = col.darkPurple},
     PMenuSel = {bg = col.greyPink},
