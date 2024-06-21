@@ -13,6 +13,17 @@ local highlights = {
     --Tab selection, menus
     PMenu = {fg = col.text, bg = col.darkPurple},
     PMenuSel = {bg = col.greyPink},
+    PMenuSbar = {bg = col.greyPink},
+    PMenuThumb = {bg = col.whitePink},
+
+    Conceal = {bg = col.greyPink},
+    Folded = {fg = col.pink, bg = col.darkPurple},
+
+    --Errors
+    Error = {fg = col.lightRed, bg = col.red},
+    ErrorMsg = {fg = col.text, bg = col.red},
+    NvimInternalError = {bg = col.red},
+    WarningMsg = {fg = col.red},
 
     --Line Numbers
     LineNr = {fg = col.pink, bg = col.darkPurple},
