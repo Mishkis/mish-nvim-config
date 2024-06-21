@@ -12,7 +12,7 @@ local function ModeUpdate(textMode, colors)
     for targetHighlight, i in pairs(changedHighlights) do
         vim.api.nvim_set_hl(0, targetHighlight, {fg = colors[i[1]], bg = colors[i[2]]})
     end
-    vim.opt.stl="%#WinMode# %{winnr()} %-8.("..textMode.."%) %#WinModeTrans#│%#WinDir# %F %#Modified#%m%#WinDir#%=%-4.L %#WinModeTrans#│%#WinMode#   %-3.l%-3.(:%)%-3.c" 
+    vim.opt.stl="%#WinMode# %{winnr()} %-8.("..textMode.."%) %#WinModeTrans#│%#WinDir# %F %#Modified#%m%#WinDir#%=%-4.L %#WinModeTrans#│%#WinMode#   %-3.l%-3.(:%)%-3.c"
 end
 
 vim.api.nvim_create_autocmd("ModeChanged", {
