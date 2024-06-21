@@ -18,12 +18,14 @@ return {
     },
 
     config = function()
-        require("mason-lspconfig").setup()
+        require("mason-lspconfig").setup({
+            ensure_installed = vim.tbl_keys(servers)
+        })
 
         require("mason-lspconfig").setup_handlers {
             function (server_name)
                 local config = servers[server_name]
-                if config == "nil" then
+                if config == nil then
                     config = {}
                 end
                 require("lspconfig")[server_name].setup(config)
