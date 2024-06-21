@@ -13,7 +13,7 @@ vim.opt.breakindent = true
 vim.opt.briopt = "shift:5,sbr"
 vim.opt.sbr = "--->"
 
-vim.opt.display = lastline
+vim.opt.display = "lastline"
 
 vim.opt.cmdheight = 2
 
