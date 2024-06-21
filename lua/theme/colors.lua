@@ -25,6 +25,8 @@ return {
     lightBackground = "#463a48",
     text = "#f6e6fb",
 
+    menuBackground = "#594e62",
+
     --General Colors
     whitePink = "#e3cee9",
     pink = "#c98cd0",

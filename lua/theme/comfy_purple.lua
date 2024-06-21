@@ -10,6 +10,10 @@ local highlights = {
     MsgArea = {fg = col.text, bg = col.black},
     Visual = {bg = col.lightGreyPink},
 
+    --Tab selection, menus
+    PMenu = {fg = col.text, bg = col.darkPurple},
+    PMenuSel = {bg = col.greyPink},
+
     --Line Numbers
     LineNr = {fg = col.pink, bg = col.darkPurple},
     CursorLineNr = {fg = col.whitePink, bg = col.greyPink},
@@ -21,6 +25,6 @@ local highlights = {
     Modified = {fg = col.lightRed, bg = col.red},
 }
 
-for group, val in pairs(highlights) do 
+for group, val in pairs(highlights) do
     vim.api.nvim_set_hl(0, group, val)
 end

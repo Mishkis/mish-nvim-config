@@ -1,7 +1,7 @@
 local col = require("theme/colors")
 
 local changedHighlights = {
-    ["NormalNC"] = { 0, 3 }, 
+    ["NormalNC"] = { 0, 3 },
     ["Cursor"] = { 1, 2 },
     ["WinSeparator"] = { 1, 2 },
     ["WinMode"] = { 1, 2 },
