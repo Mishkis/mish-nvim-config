@@ -26,7 +26,6 @@ vim.opt.cursorline = true
 
 vim.opt.showmode = false
 
-vim.opt.stl = "%#WinMode#  %{winnr()} %#WinMode#%-8{'NORMAL'} %#WinModeTrans#%#WinDir# %F %#Modified#%m%#WinDir#%=%-4.L %#WinModeTrans#%#WinMode#   %-3.l%-3.(:%)%-3.c"
 vim.opt.stc = "%=%#CursorLineNr#%{v:relnum<=1?v:relnum.'│  ':''}%#LineNr#%=%{v:relnum>1?v:relnum.'│ ':''}"
 
 vim.opt.splitright = true

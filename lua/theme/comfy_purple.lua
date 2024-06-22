@@ -33,8 +33,7 @@ local highlights = {
 
     --Status Line
     WinMode = {fg = col.normalModeFG, bg = col.normalModeBG},
-    WinModeTrans = {fg = col.normalModeBG, bg = col.greyPink},
-    WinDir = {fg = col.pink, bg = col.greyPink},
+    WinModeTrans = {fg = col.normalModeBG, bg = col.normlModeFG},
     Modified = {fg = col.lightRed, bg = col.red},
 }
 
