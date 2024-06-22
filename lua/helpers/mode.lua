@@ -9,7 +9,7 @@ return {
         return vim.tbl_contains({ "v", "vs", "V", "Vs", "\22", "\22s", "s", "S", "\19" }, vim.api.nvim_get_mode().mode)
     end,
     isCommand = function()
-        return vim.tbl_contains({ "c", "cv", "ce", "rm", "r?" }, vim.api.nvim_get_mode().mode)
+        return vim.tbl_contains({ "c", "cv", "ce", "rm", "r?", "t" }, vim.api.nvim_get_mode().mode)
     end,
     isReplace = function()
         return vim.tbl_contains({ "R", "Rc", "Rx", "Rv", "Rvc", "Rvx", "r" }, vim.api.nvim_get_mode().mode)

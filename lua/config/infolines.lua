@@ -1,40 +1,33 @@
-local modes = {
-    ["n"] = "NORMAL",
-    ["no"] = "NORMAL",
-    ["v"] = "VISUAL",
-    ["V"] = "VISUAL",
-    [""] = "VISUAL",
-    ["s"] = "SELECT",
-    ["S"] = "SELECT",
-    [""] = "SELECT",
-    ["i"] = "INSERT",
-    ["ic"] = "INSERT",
-    ["R"] = "REPLACE",
-    ["Rv"] = "VISUAL",
-    ["c"] = "COMMAND",
-    ["cv"] = "VIM EX",
-    ["ce"] = "EX",
-    ["r"] = "PROMPT",
-    ["rm"] = "MOAR",
-    ["r?"] = "CONFIRM",
-    ["!"] = "SHELL",
-    ["t"] = "TERMINAL",
-}
+local mode = require("helpers/mode")
 
-local function mode()
-    return modes[vim.api.nvim_get_mode().mode]
+local function get_mode()
+    local text_mode = mode.isInsert() and "INSERT"
+        or mode.isVisual() and "VISUAL"
+        or mode.isCommand() and "COMMAND"
+        or mode.isReplace() and "REPLACE"
+        or "NORMAL"
+    return text_mode
 end
 
-local function icon()
+local function get_mode_icon()
+    local icon = mode.isInsert() and ""
+        or mode.isVisual() and "󰒇"
+        or mode.isCommand() and ""
+        or mode.isReplace() and ""
+        or ""
+    return icon
+end
+
+local function get_icon()
     return (require("nvim-web-devicons").get_icon_color_by_filetype(vim.bo.filetype))
 end
 
 function Statusline()
-    return "%#WinMode# %#WinMode# %#WinMode#%-7.{'"..mode().."'} %#WinModeTrans# 󱧷 %F %#ModifiedTrans#%{%&modified ? '%#Modified#󱙄 %#ModifiedTrans#' : ''%}%#WinModeTrans#%=󰉸 %-4.L %#WinModeTrans#%#WinMode#   %-3.l%-3.(:%)%-3.c"
+    return "%#WinMode# "..get_mode_icon().."%#WinMode# %#WinMode#%-7.{'"..get_mode().."'} %#WinModeTrans# 󱧷 %F %#ModifiedTrans#%{%&modified ? '%#Modified#󱙄 %#ModifiedTrans#' : ''%}%#WinModeTrans#%=󰉸 %-4.L %#WinModeTrans#%#WinMode#   %-3.l%-3.(:%)%-3.c"
 end
 
 function Windowbar()
-    return "%{%&modified ? '%#Modified# 󱙄 %#ModifiedTrans#' : ''%}%#WinModeTrans#  %t%=%#WinMode#  %{winnr()} "..icon().."  "
+    return "%{%&modified ? '%#Modified# 󱙄 %#ModifiedTrans#' : ''%}%#WinModeTrans#  %t%=%#WinMode#  %{winnr()} "..get_icon().."  "
 end
 
 vim.opt.ls = 3

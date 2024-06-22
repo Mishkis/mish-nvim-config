@@ -1,4 +1,5 @@
 local col = require("theme/colors")
+local mode = require("helpers/mode")
 
 local changedHighlights = {
     ["NormalNC"] = { 0, 3 },
@@ -27,20 +28,13 @@ end
 
 vim.api.nvim_create_autocmd("ModeChanged", {
     callback = function()
-        local charToMatch = string.lower(string.sub(vim.v.event.new_mode, 1, 1))
-        local matchingString = {
-            ["n"] =  { col.normalModeFG, col.normalModeBG, col.normalModeBlack },
-            ["v"] = { col.visualModeFG, col.visualModeBG, col.visualModeBlack },
-            ["\22"] = { col.visualModeFG, col.visualModeBG, col.visualModeBlack },
-            ["s"] = { col.visualModeFG, col.visualModeBG, col.visualModeBlack },
-            ["\19"] = { col.visualModeFG, col.visualModeBG, col.visualModeBlack },
-            ["i"] = { col.insertModeFG, col.insertModeBG, col.insertModeBlack },
-            ["r"] = { col.replaceModeFG, col.replaceModeBG, col.replaceModeBlack },
-            ["c"] = { col.commandModeFG, col.commandModeBG, col.commandModeBlack },
-            ["t"] = { col.commandModeFG, col.commandModeBG, col.commandModeBlack },
-        }
+        local colors = mode.isInsert() and { col.insertModeFG, col.insertModeBG, col.insertModeBlack }
+            or mode.isVisual() and { col.visualModeFG, col.visualModeBG, col.visualModeBlack }
+            or mode.isCommand() and { col.commandModeFG, col.commandModeBG, col.commandModeBlack }
+            or mode.isReplace() and { col.replaceModeFG, col.replaceModeBG, col.replaceModeBlack }
+            or { col.normalModeFG, col.normalModeBG, col.normalModeBlack }
 
-        ModeUpdate(matchingString[charToMatch])
+        ModeUpdate(colors)
     end
 })
 
