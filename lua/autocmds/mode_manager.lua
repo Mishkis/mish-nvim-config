@@ -3,14 +3,25 @@ local col = require("theme/colors")
 local changedHighlights = {
     ["NormalNC"] = { 0, 3 },
     ["Cursor"] = { 1, 2 },
-    ["WinSeparator"] = { 2, 2 },
+    ["WinSeparator"] = { 1, 3 },
     ["WinMode"] = { 1, 2 },
     ["WinModeTrans"] = { 2, 1 },
+    ["ModifiedTrans"] = { col.red, 1 },
 }
 
 local function ModeUpdate(colors)
     for targetHighlight, i in pairs(changedHighlights) do
-        vim.api.nvim_set_hl(0, targetHighlight, {fg = colors[i[1]], bg = colors[i[2]]})
+        local foreground = i[1]
+        if type(foreground) == "number" then
+            foreground = colors[foreground]
+        end
+
+        local background = i[2]
+        if type(background) == "number" then
+            background = colors[background]
+        end
+
+        vim.api.nvim_set_hl(0, targetHighlight, {fg = foreground, bg = background})
     end
 end
 

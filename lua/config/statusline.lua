@@ -30,7 +30,14 @@ local function icon()
 end
 
 function Statusline()
-    return "%#WinMode# "..icon().."%#WinMode# %{winnr()} %#WinMode#%-7.{'"..mode().."'} %#WinModeTrans# %F %#Modified#%m%#WinModeTrans#%=%-4.L %#WinModeTrans#%#WinMode#   %-3.l%-3.(:%)%-3.c"
+    return "%#WinMode# %#WinMode# %#WinMode#%-7.{'"..mode().."'} %#WinModeTrans# 󱧷 %F %#ModifiedTrans#%{%&modified ? '%#Modified#󱙄 %#ModifiedTrans#' : ''%}%#WinModeTrans#%=󰉸 %-4.L %#WinModeTrans#%#WinMode#   %-3.l%-3.(:%)%-3.c"
 end
 
+function Windowbar()
+
+end
+
+vim.opt.ls = 3
 vim.opt.stl = "%{%v:lua.Statusline()%}"
+
+vim.opt.wbr = "%{%v:lua.Windowbar()%}"

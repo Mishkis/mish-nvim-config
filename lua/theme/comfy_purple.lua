@@ -4,7 +4,7 @@ local highlights = {
     Cursor = {fg = col.normalModeFG, bg = col.normalModeBG},
     CursorLine = {bg = col.lightBackground},
     EndOfBuffer = {fg = col.greyPink},
-    WinSeparator = {fg = col.normalModeBG, bg = col.normalModeFG},
+    WinSeparator = {fg = col.normalModeBG},
     Normal = {fg = col.text, bg = col.background},
     NormalNC = {fg = col.text, bg = col.black},
     MsgArea = {fg = col.text, bg = col.black},
@@ -33,8 +33,9 @@ local highlights = {
 
     --Status Line
     WinMode = {fg = col.normalModeFG, bg = col.normalModeBG},
-    WinModeTrans = {fg = col.normalModeBG, bg = col.normlModeFG},
+    WinModeTrans = {fg = col.normalModeBG, bg = col.normalModeFG},
     Modified = {fg = col.lightRed, bg = col.red},
+    ModifiedTrans = {fg = col.red, bg = col.normalModeFG}
 }
 
 for group, val in pairs(highlights) do
