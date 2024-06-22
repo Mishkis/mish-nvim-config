@@ -34,7 +34,7 @@ function Statusline()
 end
 
 function Windowbar()
-
+    return "%{%&modified ? '%#Modified# 󱙄 %#ModifiedTrans#' : ''%}%#WinModeTrans#  %t%=%#WinMode#  %{winnr()} "..icon().."  "
 end
 
 vim.opt.ls = 3
