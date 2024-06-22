@@ -1,10 +1,8 @@
 local servers = {
     lua_ls = {
-        settings = {
-            Lua = {
-                diagnostics = {
-                    globals = {"vim"}
-                }
+        Lua = {
+            diagnostics = {
+                globals = {"vim"}
             }
         }
     }
@@ -12,15 +10,18 @@ local servers = {
 
 return {
     "neovim/nvim-lspconfig",
+    lazy = false,
     dependencies = {
-        { "williamboman/mason.nvim", lazy = false, config = true },
+        { "williamboman/mason.nvim", config = true },
         "williamboman/mason-lspconfig.nvim",
     },
 
     config = function()
-        vim.keymap.set("n", "<Leader>h", vim.lsp.buf.hover, { desc = "[h]over word" })
-        vim.keymap.set("n", "<Leader>d", vim.lsp.buf.definition, { desc = "Goto [d]efinition" })
-        vim.keymap.set("n", "<Leader>td", vim.lsp.buf.type_definition, { desc = "Goto [t]ype [d]efiniton" })
+        local keybindings = function()
+            vim.keymap.set("n", "<Leader>h", vim.lsp.buf.hover, { desc = "[h]over word" })
+            vim.keymap.set("n", "<Leader>d", vim.lsp.buf.definition, { desc = "Goto [d]efinition" })
+            vim.keymap.set("n", "<Leader>td", vim.lsp.buf.type_definition, { desc = "Goto [t]ype [d]efiniton" })
+        end
 
         require("mason-lspconfig").setup({
             ensure_installed = vim.tbl_keys(servers)
@@ -28,13 +29,13 @@ return {
 
         require("mason-lspconfig").setup_handlers {
             function (server_name)
-                local config = servers[server_name]
-                if config == nil then
-                    config = {}
-                end
+                local config = {
+                    on_attach = keybindings,
+                    settings = servers[server_name]
+                }
+
                 require("lspconfig")[server_name].setup(config)
             end,
         }
-
     end,
 }
