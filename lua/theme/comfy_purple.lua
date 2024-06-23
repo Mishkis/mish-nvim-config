@@ -35,7 +35,14 @@ local highlights = {
     WinMode = {fg = col.normalModeFG, bg = col.normalModeBG},
     WinModeTrans = {fg = col.normalModeBG, bg = col.normalModeFG},
     Modified = {fg = col.lightRed, bg = col.red},
-    ModifiedTrans = {fg = col.red, bg = col.normalModeFG}
+    ModifiedTrans = {fg = col.red, bg = col.normalModeFG},
+
+    --Tab Line
+    TabNeovim = {fg = col.insertModeFG, bg = col.insertModeBG},
+    TabNeovimTrans = {fg = col.insertModeBG, bg = col.normalModeFG},
+    TabLeft = {link = "WinMode"},
+    TabMain = {link = "WinModeTrans"},
+    TabRight = {link = "WinMode"},
 }
 
 for group, val in pairs(highlights) do

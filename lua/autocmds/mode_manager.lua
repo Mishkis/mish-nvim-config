@@ -8,6 +8,7 @@ local changedHighlights = {
     ["WinMode"] = { 1, 2 },
     ["WinModeTrans"] = { 2, 1 },
     ["ModifiedTrans"] = { col.red, 1 },
+    ["TabNeovimTrans"] = { col.insertModeBG, 2 },
 }
 
 local function ModeUpdate(colors)
