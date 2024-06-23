@@ -36,4 +36,9 @@ return {
     lightRed = "#d99aa7",
     red = "#c95873",
     black = "#252226",
+
+    --Special
+    transPink = "#F5A9B8",
+    transBlue = "#5BCEFA",
+    transWhite = "#FFFFFF",
 }

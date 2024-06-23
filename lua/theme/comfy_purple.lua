@@ -10,7 +10,7 @@ local highlights = {
     MsgArea = {fg = col.text, bg = col.black},
     Visual = {bg = col.lightGreyPink},
 
-    Search = {fg = col.background, bg = col.lightRed},
+    Search = {fg = col.background, bg = col.replaceModeBG},
 
     --Tab selection, menus
     PMenu = {fg = col.text, bg = col.darkPurple},
@@ -34,15 +34,21 @@ local highlights = {
     --Status Line
     WinMode = {fg = col.normalModeFG, bg = col.normalModeBG},
     WinModeTrans = {fg = col.normalModeBG, bg = col.normalModeFG},
-    Modified = {fg = col.lightRed, bg = col.red},
-    ModifiedTrans = {fg = col.red, bg = col.normalModeFG},
+
+    Modified = {fg = col.replaceModeFG, bg = col.replaceModeBG},
+    ModifiedTrans = {fg = col.replaceModeBG, bg = col.normalModeFG},
 
     --Tab Line
     TabNeovim = {fg = col.insertModeFG, bg = col.insertModeBG},
-    TabNeovimTrans = {fg = col.insertModeBG, bg = col.normalModeFG},
+    TabNeovimTrans = {fg = col.insertModeBG, bg = col.insertModeFG},
+    TabLeftStart = {fg = col.insertModeFG, bg = col.normalModeBG},
     TabLeft = {link = "WinMode"},
     TabMain = {link = "WinModeTrans"},
     TabRight = {link = "WinMode"},
+    TabFlagTrans = {fg = col.normalModeBG, bg = col.transBlue},
+    TabFlagBlue = {fg = col.transPink, bg = col.transBlue},
+    TabFlagPink = {fg = col.transPink, bg = col.transWhite},
+    TabFlagWhite = {fg = col.transWhite, bg = col.transPink},
 }
 
 for group, val in pairs(highlights) do

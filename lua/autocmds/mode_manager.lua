@@ -7,8 +7,9 @@ local changedHighlights = {
     ["WinSeparator"] = { 1, 3 },
     ["WinMode"] = { 1, 2 },
     ["WinModeTrans"] = { 2, 1 },
-    ["ModifiedTrans"] = { col.red, 1 },
-    ["TabNeovimTrans"] = { col.insertModeBG, 2 },
+    ["ModifiedTrans"] = { col.replaceModeBG, 1 },
+    ["TabLeftStart"] = { col.insertModeFG, 2 },
+    ["TabFlagTrans"] = { 2, col.transBlue },
 }
 
 local function ModeUpdate(colors)

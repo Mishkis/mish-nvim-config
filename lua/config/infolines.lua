@@ -27,6 +27,15 @@ local function get_version()
     return "NVIM v"..version.major.."."..version.minor.."."..version.patch
 end
 
+local function get_current_lsp_server()
+    local server = vim.lsp.get_active_clients({ bufnr = vim.api.nvim_get_current_buf() })
+    if server == {} or server[1] == nil then
+        return "N/A 󰒑 "
+    else
+        return server[1].name.."  "
+    end
+end
+
 local function shorten_string(str)
     local output = string.sub(str, 1, 20)
     output = (string.gsub(output, '"', '\"'))
@@ -48,7 +57,7 @@ function Windowbar()
 end
 
 function Tabbar()
-    return "%#TabNeovim#  "..get_version().." %#TabNeovimTrans#%#TabLeft#   Windows: %{len(nvim_list_wins())} %#TabMain# 󰆒  \""..shorten_string(vim.fn.getreg("p")).."\"%=  \""..shorten_string(vim.fn.getreg("+")).."\" %#TabRight#   %-10{':"..shorten_string(vim.fn.getreg(':')).."'}"
+    return "%#TabNeovim#  "..get_version().." %#TabNeovimTrans#   Windows: %{len(nvim_list_wins())} %#TabLeftStart#%#TabLeft# 󰆒  \""..shorten_string(vim.fn.getreg("_")).."\" %#TabMain#%=%#TabRight#    \""..shorten_string(vim.fn.getreg("+")).."\" %#TabFlagTrans#%#TabFlagBlue#%#TabFlagPink#%#TabFlagWhite#%#TabFlagBlue#%#TabFlagTrans#%#TabRight# Server: "..get_current_lsp_server().." "
 end
 
 vim.opt.ls = 3
