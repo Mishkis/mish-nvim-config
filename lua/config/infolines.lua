@@ -1,4 +1,5 @@
 local mode = require("helpers/mode")
+local registers = require("helpers/registers")
 
 local function get_mode()
     local text_mode = mode.isInsert() and "INSERT"
@@ -74,7 +75,7 @@ function Windowbar()
 end
 
 function Tabbar()
-    return "%#TabNeovim#  "..get_version().." %#TabNeovimTrans#   Windows: %{len(nvim_list_wins())} %#TabLeftStart#%#TabLeft# 󰆒  \""..shorten_string(vim.fn.getreg("_")).."\" %#TabMain#%=%#TabRight#    \""..shorten_string(vim.fn.getreg("+")).."\" %#TabFlagTrans#%#TabFlagBlue#%#TabFlagPink#%#TabFlagWhite#%#TabFlagBlue#%#TabFlagTrans#%#TabRight# Server: "..get_current_lsp_server().." "
+    return "%#TabNeovim#  "..get_version().." %#TabNeovimTrans#   Windows: %{len(nvim_list_wins())} %#TabLeftStart#%#TabLeft# 󰆒  \""..shorten_string(registers.get("p")).."\" %#TabMain#%=%#TabRight#    \""..shorten_string(registers.get("+")).."\" %#TabFlagTrans#%#TabFlagBlue#%#TabFlagPink#%#TabFlagWhite#%#TabFlagBlue#%#TabFlagTrans#%#TabRight# "..get_current_lsp_server().." "
 end
 
 vim.opt.ls = 3

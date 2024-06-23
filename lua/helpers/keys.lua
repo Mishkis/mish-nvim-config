@@ -1,7 +1,10 @@
 return {
     --Options is assumed to be description by default, and mode if not provided is assumed to be normal.
     set = function(keys, command, options, mode)
-        if type(options) == "string" then
+
+        if options == nil then
+            options = {}
+        elseif type(options) == "string" then
             options = { desc = options }
         end
 
