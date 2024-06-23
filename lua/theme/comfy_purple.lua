@@ -35,6 +35,9 @@ local highlights = {
     WinMode = {fg = col.normalModeFG, bg = col.normalModeBG},
     WinModeTrans = {fg = col.normalModeBG, bg = col.normalModeFG},
 
+    StatusError = {fg = col.replaceModeBG, bg = col.normalModeFG},
+    StatusWarning = {fg = col.orange, bg = col.normalModeFG},
+
     Modified = {fg = col.replaceModeFG, bg = col.replaceModeBG},
     ModifiedTrans = {fg = col.replaceModeBG, bg = col.normalModeFG},
 

@@ -48,8 +48,25 @@ local function shorten_string(str)
     return output
 end
 
+local function get_lsp_information()
+    local errors = vim.diagnostic.get(0, { severity =  1 })
+    local error_count = vim.tbl_count(errors)
+
+    local warning_count = vim.tbl_count(vim.diagnostic.get(0, { severity =  2 }))
+
+    local output = ""
+    if error_count ~= 0 then
+        output = output.."%#StatusError#"..errors[1].lnum.." "..shorten_string(errors[1].message).."  "..error_count.." "
+    end
+    if warning_count ~= 0 then
+        output = output.."%#StatusWarning# "..warning_count.." "
+    end
+
+    return output
+end
+
 function Statusline()
-    return "%#WinMode# "..get_mode_icon().."%#WinMode# %#WinMode#%-7.{'"..get_mode().."'} %#WinModeTrans# 󱧷 %F %#ModifiedTrans#%{%&modified ? '%#Modified#󱙄 %#ModifiedTrans#' : ''%}%#WinModeTrans#%=󰉸 %-4.L %#WinModeTrans#%#WinMode#   %-3.l%-3.(:%)%-3.c"
+    return "%#WinMode# "..get_mode_icon().."%#WinMode# %#WinMode#%-7.{'"..get_mode().."'} %#WinModeTrans# 󱧷 %F %#ModifiedTrans#%{%&modified ? '%#Modified#󱙄 %#ModifiedTrans#' : ''%}%#WinModeTrans#%="..get_lsp_information().."%#WinModeTrans#󰉸 %-4.L %#WinModeTrans#%#WinMode#   %-3.l%-3.(:%)%-3.c"
 end
 
 function Windowbar()
