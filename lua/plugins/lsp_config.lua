@@ -1,3 +1,5 @@
+local keys = require("helpers/keys")
+
 local servers = {
     lua_ls = {
         Lua = {
@@ -18,9 +20,9 @@ return {
 
     config = function()
         local keybindings = function()
-            vim.keymap.set("n", "<Leader>h", vim.lsp.buf.hover, { desc = "[h]over word" })
-            vim.keymap.set("n", "<Leader>d", vim.lsp.buf.definition, { desc = "Goto [d]efinition" })
-            vim.keymap.set("n", "<Leader>td", vim.lsp.buf.type_definition, { desc = "Goto [t]ype [d]efiniton" })
+            keys.set("<Leader>h", vim.lsp.buf.hover, "[h]over word")
+            keys.set("<Leader>d", vim.lsp.buf.definition, "Goto [d]efinition")
+            keys.set("<Leader>td", vim.lsp.buf.type_definition, "Goto [t]ype [d]efiniton")
         end
 
         require("mason-lspconfig").setup({
