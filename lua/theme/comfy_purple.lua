@@ -25,7 +25,7 @@ local highlights = {
     Error = {fg = col.lightRed, bg = col.red},
     ErrorMsg = {fg = col.text, bg = col.red},
     NvimInternalError = {bg = col.red},
-    WarningMsg = {fg = col.red},
+    WarningMsg = {fg = col.orange},
 
     --Line Numbers
     LineNr = {fg = col.pink, bg = col.darkPurple},
