@@ -45,6 +45,5 @@ vim.opt.cb = "unnamedplus"
 vim.opt.inccommand = "split"
 
 vim.opt.termguicolors = true
-vim.opt.guifont = "SauceCodePro NF"
 
 vim.opt.shellslash = true
