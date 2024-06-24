@@ -7,16 +7,20 @@ local options = {
 -- Load lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 -- Setup plugins from plugins folder using lazyvim plugins.lua
-require("lazy").setup("plugins", options)
+--require("lazy").setup("plugins", options)
+require("lazy").setup({
+    spec = {
+        { import = "plugins" },
+    },
+
+    change_detection = {
+        enabled = false,
+    },
+})

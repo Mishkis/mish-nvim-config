@@ -13,7 +13,7 @@ local highlights = {
     Search = {fg = col.background, bg = col.replaceModeBG},
     CurSearch = {fg = col.background, bg = col.whitePink},
 
-    --Code
+    -- Code
     ["@variable"] = {fg = col.transBlue},
     Constant = {fg = col.insertModeBG},
     Keyword = {fg = col.yellow},
@@ -28,26 +28,30 @@ local highlights = {
     Identifier = {fg = col.lightPink},
     Delimiter = {fg = col.purple},
 
-    --Tab selection, menus
+    -- Tab selection, menus
     PMenu = {fg = col.text, bg = col.darkPurple},
     PMenuSel = {bg = col.greyPink},
     PMenuSbar = {bg = col.greyPink},
     PMenuThumb = {bg = col.whitePink},
 
+    -- Floating Windows
+    NormalFloat = {fg = col.text, bg = col.darkPurple},
+    FloatBorder = {fg = col.text, bg = col.darkPurple},
+
     Conceal = {bg = col.greyPink},
     Folded = {fg = col.pink, bg = col.darkPurple},
 
-    --Errors
+    -- Errors
     Error = {fg = col.lightRed, bg = col.red},
     ErrorMsg = {fg = col.text, bg = col.red},
     NvimInternalError = {bg = col.red},
     WarningMsg = {fg = col.orange},
 
-    --Line Numbers
+    -- Line Numbers
     LineNr = {fg = col.pink, bg = col.darkPurple},
     CursorLineNr = {fg = col.whitePink, bg = col.greyPink},
 
-    --Status Line
+    -- Status Line
     WinMode = {fg = col.normalModeFG, bg = col.normalModeBG},
     WinModeTrans = {fg = col.normalModeBG, bg = col.normalModeFG},
 
@@ -57,7 +61,7 @@ local highlights = {
     Modified = {fg = col.replaceModeFG, bg = col.replaceModeBG},
     ModifiedTrans = {fg = col.replaceModeBG, bg = col.normalModeFG},
 
-    --Tab Line
+    -- Tab Line
     TabNeovim = {fg = col.insertModeFG, bg = col.insertModeBG},
     TabNeovimTrans = {fg = col.insertModeBG, bg = col.insertModeFG},
     TabLeftStart = {fg = col.insertModeFG, bg = col.normalModeBG},
