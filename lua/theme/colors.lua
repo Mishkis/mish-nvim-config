@@ -29,14 +29,18 @@ return {
 
     --General Colors
     whitePink = "#e3cee9",
+    lightPink = "#eeb5ed",
     pink = "#c98cd0",
     lightGreyPink = "#846783",
     greyPink = "#6f5870",
+    purple = "#ce48ee",
     darkPurple = "#453548",
     lightRed = "#d99aa7",
     red = "#c95873",
     black = "#252226",
     orange = "#fbbc56",
+    violet = "#bcb7f7",
+    yellow = "#f8fbc4",
 
     --Special
     transPink = "#F5A9B8",

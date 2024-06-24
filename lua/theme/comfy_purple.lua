@@ -11,6 +11,22 @@ local highlights = {
     Visual = {bg = col.lightGreyPink},
 
     Search = {fg = col.background, bg = col.replaceModeBG},
+    CurSearch = {fg = col.background, bg = col.whitePink},
+
+    --Code
+    ["@variable"] = {fg = col.transBlue},
+    Constant = {fg = col.insertModeBG},
+    Keyword = {fg = col.yellow},
+    ["@keyword.operator"] = {fg = col.violet},
+    ["@keyword.function"] = {fg = col.orange},
+    Statement = {fg = col.transPink},
+    Comment = {fg = col.greyPink},
+    String = {fg = col.visualModeBG},
+    Function = {fg = col.replaceModeBG},
+    Operator = {fg = col.text},
+    Special = {fg = col.transBlue},
+    Identifier = {fg = col.lightPink},
+    Delimiter = {fg = col.purple},
 
     --Tab selection, menus
     PMenu = {fg = col.text, bg = col.darkPurple},
