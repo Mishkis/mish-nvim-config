@@ -2,21 +2,12 @@ local mode = require("helpers/mode")
 local registers = require("helpers/registers")
 
 local function get_mode()
-    local text_mode = mode.isInsert() and "INSERT"
-        or mode.isVisual() and "VISUAL"
-        or mode.isCommand() and "COMMAND"
-        or mode.isReplace() and "REPLACE"
-        or "NORMAL"
+    local text_mode = mode.isInsert() and "  INSERT"
+        or mode.isVisual() and "󰒇  VISUAL"
+        or mode.isCommand() and "  COMMAND"
+        or mode.isReplace() and "  REPLACE"
+        or "  NORMAL"
     return text_mode
-end
-
-local function get_mode_icon()
-    local icon = mode.isInsert() and ""
-        or mode.isVisual() and "󰒇"
-        or mode.isCommand() and ""
-        or mode.isReplace() and ""
-        or ""
-    return icon
 end
 
 local function get_icon()
@@ -67,7 +58,7 @@ local function get_lsp_information()
 end
 
 function Statusline()
-    return "%#WinMode# "..get_mode_icon().."%#WinMode# %#WinMode#%-7.{'"..get_mode().."'} %#WinModeTrans# 󱧷 %F %#ModifiedTrans#%{%&modified ? '%#Modified#󱙄 %#ModifiedTrans#' : ''%}%#WinModeTrans#%="..get_lsp_information().."%#WinModeTrans#󰉸 %-4.L %#WinModeTrans#%#WinMode#   %-3.l%-3.(:%)%-3.c"
+    return "%#WinMode# %-10.{'"..get_mode().."'} %#WinModeTrans# 󱧷 %F %#ModifiedTrans#%{%&modified ? '%#Modified#󱙄 %#ModifiedTrans#' : ''%}%#WinModeTrans#%="..get_lsp_information().."%#WinModeTrans#󰉸 %-4.L %#WinModeTrans#%#WinMode#   %-3.l%-3.(:%)%-3.c"
 end
 
 function Windowbar()
