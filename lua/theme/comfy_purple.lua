@@ -24,7 +24,7 @@ local highlights = {
     String = {fg = col.visualModeBG},
     Function = {fg = col.replaceModeBG},
     Operator = {fg = col.text},
-    Special = {fg = col.transBlue},
+    Special = {fg = col.orange},
     Identifier = {fg = col.lightPink},
     Delimiter = {fg = col.purple},
 
