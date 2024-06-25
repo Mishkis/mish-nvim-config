@@ -64,8 +64,7 @@ local highlights = {
     -- Window Bar
     ModifiedWinBarTrans = {fg = col.replaceModeBG, bg = col.insertModeBG},
     WinBarLeft = {fg = col.text, bg = col.insertModeBG},
-    WinBarLeftTrans = {fg = col.insertModeBG, bg = col.insertModeFG},
-    WinBarCenter = {fg = col.insertModeBG, bg = col.normalModeFG},
+    WinBarLeftTrans = {fg = col.insertModeBG, bg = col.normalModeFG},
     WinBarRight = {link = "WinMode"},
 
     -- Tab Line
