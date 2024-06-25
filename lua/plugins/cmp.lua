@@ -14,14 +14,18 @@ return {
 
         cmp.setup({
             snippet = {
-                -- REQUIRED - you must specify a snippet engine
                 expand = function(args)
                     require("snippy").expand_snippet(args.body)
                 end,
             },
+
             window = {
-                completion = cmp.config.window.bordered(),
+                completion = {
+                    winhighlight = "Normal:PMenu,CursorLine:PMenuSel",
+                    border = "rounded",
+                },
             },
+
             mapping = {
                 ["<CR>"] = function(fallback)
                     if cmp.visible() then
@@ -64,11 +68,16 @@ return {
                     end
                 end,
             },
+
             sources = cmp.config.sources({
                 { name = "snippy", group_index = 1 },
                 { name = "nvim_lsp", group_index = 2 },
                 { name = "buffer", group_index = 3 },
-            })
+            }),
+
+            experimental = {
+                ghost_text = true
+            },
         })
 
         -- To use git you need to install the plugin petertriho/cmp-git and uncomment lines below
