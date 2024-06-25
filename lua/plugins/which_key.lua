@@ -19,6 +19,7 @@ return {
            f = { name = "[f]ind using Telescope." },
            t = { name = "Goto [t]ype [d]efinition." },
            s = { name = "[s]elect using treesitter textobjects." },
+           g = { name = "[g]it commands."},
         }, { prefix = "<Leader>" })
     end
 }
