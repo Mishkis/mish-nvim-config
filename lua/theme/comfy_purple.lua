@@ -79,6 +79,9 @@ local highlights = {
     TabFlagBlue = {fg = col.transPink, bg = col.transBlue},
     TabFlagPink = {fg = col.transPink, bg = col.transWhite},
     TabFlagWhite = {fg = col.transWhite, bg = col.transPink},
+
+    -- CMP Completion menu
+    -- Defined in cmp.lua as it is lazy loaded
 }
 
 for group, val in pairs(highlights) do

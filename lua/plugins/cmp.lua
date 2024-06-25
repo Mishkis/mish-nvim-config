@@ -1,5 +1,9 @@
+local col = require("theme.colors")
+local hl = require("helpers.highlights")
+
 return {
     "hrsh7th/nvim-cmp",
+    event = "VeryLazy",
     dependencies = {
         "neovim/nvim-lspconfig",
         "hrsh7th/cmp-buffer",
@@ -110,6 +114,12 @@ return {
             matching = { disallow_symbol_nonprefix_matching = false }
         })
 
+        hl.set("CmpItemKindDefault", {fg = col.lightPink})
+        hl.set("CmpItemKindFunctionDefault", {link = "@keyword.function"})
+        hl.set("CmpItemKindSnippetDefault", {fg = col.transPink})
+        hl.set("CmpItemKindPropertyDefault", {link = "@property"})
+        hl.set("CmpItemKindVariableDefault", {link = "@variable"})
+        hl.set("CmpItemKindTextDefault", {link = "Comment"})
         -- cmp_nvim_lsp is set up in lsp_config.
     end,
 }
