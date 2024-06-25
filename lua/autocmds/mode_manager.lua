@@ -1,4 +1,5 @@
 local col = require("theme.colors")
+local hl = require("helpers.highlights")
 local mode = require("helpers.mode")
 
 local changedHighlights = {
@@ -12,6 +13,8 @@ local changedHighlights = {
     ["ModifiedTrans"] = { col.replaceModeBG, 1 },
     ["TabLeftStart"] = { col.insertModeFG, 2 },
     ["TabFlagTrans"] = { 2, col.transBlue },
+    ["WinBarLeftTrans"] = { hl.get("WinBarLeftTrans").fg, 1 },
+    ["WinBarCenter"] = { hl.get("WinBarCenter").fg, 1 },
 }
 
 local function ModeUpdate(colors)
@@ -26,7 +29,7 @@ local function ModeUpdate(colors)
             background = colors[background]
         end
 
-        vim.api.nvim_set_hl(0, targetHighlight, {fg = foreground, bg = background})
+        hl.set(targetHighlight, {fg = foreground, bg = background})
     end
 end
 

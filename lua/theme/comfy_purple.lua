@@ -61,6 +61,13 @@ local highlights = {
     Modified = {fg = col.replaceModeFG, bg = col.replaceModeBG},
     ModifiedTrans = {fg = col.replaceModeBG, bg = col.normalModeFG},
 
+    -- Window Bar
+    ModifiedWinBarTrans = {fg = col.replaceModeBG, bg = col.insertModeBG},
+    WinBarLeft = {fg = col.text, bg = col.insertModeBG},
+    WinBarLeftTrans = {fg = col.insertModeBG, bg = col.insertModeFG},
+    WinBarCenter = {fg = col.insertModeBG, bg = col.normalModeFG},
+    WinBarRight = {link = "WinMode"},
+
     -- Tab Line
     TabNeovim = {fg = col.insertModeFG, bg = col.insertModeBG},
     TabNeovimTrans = {fg = col.insertModeBG, bg = col.insertModeFG},

@@ -49,6 +49,6 @@ return {
             };
         })
 
-        require("nvim-web-devicons").set_default_icon("", "#ffffff")
+        require("nvim-web-devicons").set_default_icon("", "#bdeebf")
     end,
 }

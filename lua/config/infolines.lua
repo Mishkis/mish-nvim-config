@@ -1,3 +1,5 @@
+local col = require("theme.colors")
+local hl = require("helpers.highlights")
 local mode = require("helpers.mode")
 local registers = require("helpers.registers")
 
@@ -11,7 +13,13 @@ local function get_mode()
 end
 
 local function get_icon()
-    return (require("nvim-web-devicons").get_icon_color_by_filetype(vim.bo.filetype))
+    local icon, color = require("nvim-web-devicons").get_icon_color_by_filetype(vim.bo.filetype)
+
+    hl.set("ModifiedWinBarTrans", {fg = col.replaceModeBG, bg = color})
+    hl.set("WinBarLeft", {fg = col.normalModeBlack, bg = color})
+    hl.set("WinBarLeftTrans", {fg = color, bg = hl.get("WinBarLeftTrans").bg})
+
+    return icon
 end
 
 local function get_version()
@@ -62,7 +70,7 @@ function Statusline()
 end
 
 function Windowbar()
-    return "%{%&modified ? '%#Modified# 󱙄 %#ModifiedTrans#' : ''%}%#WinModeTrans#  %t%=%#WinMode#  %{winnr()} "..get_icon().."  "
+    return "%{%&modified ? '%#Modified# 󱙄 %#ModifiedWinBarTrans#' : ''%}%#WinBarLeft#  %t %#WinBarLeftTrans#%=%#WinBarRight#  %{winnr()} "..get_icon().."  "
 end
 
 function Tabbar()
