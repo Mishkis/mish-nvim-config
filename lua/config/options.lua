@@ -1,5 +1,3 @@
-vim.g.mapleader = " "
-
 vim.opt.acd = true
 vim.opt.cdhome = true
 

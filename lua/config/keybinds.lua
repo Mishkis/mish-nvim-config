@@ -1,5 +1,5 @@
-local keys = require("helpers/keys")
-local registers = require("helpers/registers")
+local keys = require("helpers.keys")
+local registers = require("helpers.registers")
 
 -- Stop x from storing in the + and * registry because it's annoying
 keys.set("x", '"xx')

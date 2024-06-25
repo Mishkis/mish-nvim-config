@@ -1,5 +1,5 @@
-local mode = require("helpers/mode")
-local registers = require("helpers/registers")
+local mode = require("helpers.mode")
+local registers = require("helpers.registers")
 
 local function get_mode()
     local text_mode = mode.isInsert() and "  INSERT"

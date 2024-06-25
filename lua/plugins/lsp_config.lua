@@ -1,4 +1,4 @@
-local keys = require("helpers/keys")
+local keys = require("helpers.keys")
 
 local servers = {
     lua_ls = {

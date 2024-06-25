@@ -1,5 +1,5 @@
-local col = require("theme/colors")
-local mode = require("helpers/mode")
+local col = require("theme.colors")
+local mode = require("helpers.mode")
 
 local changedHighlights = {
     ["NormalNC"] = { 0, 3 },
