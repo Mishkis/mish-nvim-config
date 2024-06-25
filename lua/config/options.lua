@@ -1,4 +1,3 @@
-vim.opt.acd = true
 vim.opt.cdhome = true
 
 vim.opt.ignorecase = true
