@@ -2,7 +2,6 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
         "neovim/nvim-lspconfig",
-        "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
@@ -21,21 +20,54 @@ return {
                 end,
             },
             window = {
-                -- completion = cmp.config.window.bordered(),
-                -- documentation = cmp.config.window.bordered(),
+                completion = cmp.config.window.bordered(),
             },
-            mapping = cmp.mapping.preset.insert({
-                ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-                ["<C-f>"] = cmp.mapping.scroll_docs(4),
-                ["<C-Space>"] = cmp.mapping.complete(),
-                ["<C-e>"] = cmp.mapping.abort(),
-                ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-            }),
+            mapping = {
+                ["<CR>"] = function(fallback)
+                    if cmp.visible() then
+                        cmp.confirm({ select = true })
+                    else
+                        fallback()
+                    end
+                end,
+
+                ["<Tab>"] = function(fallback)
+                    if cmp.visible() then
+                        cmp.select_next_item()
+                    else
+                        fallback()
+                    end
+                end,
+
+                ["<Down>"] = function(fallback)
+                    if cmp.visible() then
+                        cmp.select_next_item()
+                    else
+                        fallback()
+                    end
+                end,
+
+                ["<Up>"] = function(fallback)
+                    if cmp.visible() then
+                        cmp.select_prev_item()
+                    else
+                        fallback()
+                    end
+                end,
+
+                --[c]lear selection
+                ["<C-c>"] = function(fallback)
+                    if cmp.visible() then
+                        cmp.abort()
+                    else
+                        fallback()
+                    end
+                end,
+            },
             sources = cmp.config.sources({
-                { name = "nvim_lsp" },
-                { name = "snippy" },
-            }, {
-                { name = "buffer" },
+                { name = "snippy", group_index = 1 },
+                { name = "nvim_lsp", group_index = 2 },
+                { name = "buffer", group_index = 3 },
             })
         })
 
@@ -69,11 +101,6 @@ return {
             matching = { disallow_symbol_nonprefix_matching = false }
         })
 
-        -- Set up lspconfig.
-        local capabilities = require("cmp_nvim_lsp").default_capabilities()
-        -- Replace <YOUR_LSP_SERVER> with each lsp server you"ve enabled.
-        require("lspconfig")["lua_ls"].setup {
-            capabilities = capabilities
-        }
-    end
+        -- cmp_nvim_lsp is set up in lsp_config.
+    end,
 }

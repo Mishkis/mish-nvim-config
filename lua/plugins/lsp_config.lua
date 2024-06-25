@@ -16,6 +16,7 @@ return {
     dependencies = {
         { "williamboman/mason.nvim", config = true },
         "williamboman/mason-lspconfig.nvim",
+        "hrsh7th/cmp-nvim-lsp",
     },
 
     config = function()
@@ -29,11 +30,13 @@ return {
             ensure_installed = vim.tbl_keys(servers)
         })
 
+        local capabilites = require("cmp_nvim_lsp").default_capabilities()
         require("mason-lspconfig").setup_handlers {
             function (server_name)
                 local config = {
                     on_attach = keybindings,
-                    settings = servers[server_name]
+                    settings = servers[server_name],
+                    capabilites = capabilites,
                 }
 
                 require("lspconfig")[server_name].setup(config)
