@@ -17,6 +17,9 @@ return {
         local telescope = require("telescope")
         telescope.setup({
             defaults = {
+                preview = {
+                    filesize_limit = 1
+                },
                 mappings = {
                     i = {
                         ["<esc>"] = actions.close,
