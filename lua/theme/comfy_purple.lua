@@ -50,6 +50,12 @@ local highlights = {
     -- Line Numbers
     LineNr = {fg = col.pink, bg = col.darkPurple},
     CursorLineNr = {fg = col.whitePink, bg = col.greyPink},
+    ErrorLineNr = {fg = col.normalModeFG, bg = col.red},
+    WarningLineNr = {fg = col.normalModeFG, bg = col.orange},
+    InfoLineNr = {fg = col.normalModeFG, bg = col.transBlue},
+    LineNrTrans = {fg = col.pink, bg = col.background},
+    CursorLineNrTrans = {fg = col.whitePink, bg = col.background},
+    LineNrDeselected = {fg = col.pink, bg = col.normalModeBlack},
 
     -- Status Line
     WinMode = {fg = col.normalModeFG, bg = col.normalModeBG},

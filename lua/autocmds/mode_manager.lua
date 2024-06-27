@@ -15,6 +15,7 @@ local changedHighlights = {
     ["TabFlagTrans"] = { 2, col.transBlue },
     ["WinBarLeftTrans"] = { hl.get("WinBarLeftTrans").fg, 1 },
     ["WinBarCenter"] = { hl.get("WinBarCenter").fg, 1 },
+    ["LineNrDeselected"] = { col.pink, 3 },
 }
 
 local function ModeUpdate(colors)

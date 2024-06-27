@@ -11,9 +11,10 @@ vim.opt.briopt = "shift:5,sbr"
 vim.opt.sbr = "--->"
 
 -- Fold Options, using ufo.
-vim.opt.foldcolumn = "1"
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
+
+vim.opt.signcolumn = "no"
 
 vim.opt.display = "lastline"
 
@@ -29,7 +30,6 @@ vim.opt.cursorline = true
 vim.opt.showmode = false
 
 vim.opt.guicursor = "n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20-Cursor"
-vim.opt.stc = "%=%#CursorLineNr#%{v:relnum<=1?v:relnum.'│  ':''}%#LineNr#%=%{v:relnum>1?v:relnum.'│ ':''}"
 
 vim.opt.splitright = true
 

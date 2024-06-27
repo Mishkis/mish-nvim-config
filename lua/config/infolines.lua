@@ -65,6 +65,26 @@ local function get_lsp_information()
     return output
 end
 
+-- The following are only used by the status column.
+local function get_fold_symbol(line_num)
+    return vim.fn.foldlevel(line_num) > vim.fn.foldlevel(line_num - 1)
+        and (vim.fn.foldclosed(line_num) == -1 and "" or "") or " "
+end
+
+local function get_stc_highlight(line_num, rel_line_num)
+    local is_error = not vim.tbl_isempty(vim.diagnostic.get(0, { lnum = line_num - 1, severity = 1 }))
+    local is_warning = not vim.tbl_isempty(vim.diagnostic.get(0, { lnum = line_num - 1, severity = 2 }))
+    local is_info = not vim.tbl_isempty(vim.diagnostic.get(0, { lnum = line_num - 1, severity = 3 }))
+    local is_hint = not vim.tbl_isempty(vim.diagnostic.get(0, { lnum = line_num - 1, severity = 4 }))
+
+    return is_error and "%#ErrorLineNr# "
+        or is_warning and "%#WarningLineNr# "
+        or is_info and "%#InfoLineNr# "
+        or is_hint and "%#InfoLineNr# "
+        or rel_line_num < 2 and "%#CursorLineNr# "
+        or "%#LineNr# "
+end
+
 function Statusline()
     return "%#WinMode# %-10.{'"..get_mode().."'} %#WinModeTrans# 󱧷 %F %#ModifiedTrans#%{%&modified ? '%#Modified#󱙄 %#ModifiedTrans#' : ''%}%#WinModeTrans#%="..get_lsp_information().."%#WinModeTrans#󰉸 %-4.L %#WinModeTrans#%#WinMode#   %-3.l%-3.(:%)%-3.c"
 end
@@ -77,6 +97,13 @@ function Tabbar()
     return "%#TabNeovim#  "..get_version().." %#TabNeovimTrans#   Windows: %{len(nvim_list_wins())} %#TabLeftStart#%#TabLeft# 󰆒  \""..shorten_string(registers.get("p")).."\" %#TabMain#%=%#TabRight#    \""..shorten_string(registers.get("+")).."\" %#TabFlagTrans#%#TabFlagBlue#%#TabFlagPink#%#TabFlagWhite#%#TabFlagBlue#%#TabFlagTrans#%#TabRight# "..get_current_lsp_server().." "
 end
 
+function Statuscolumn(ln, rn, vn)
+    if vn ~= 0 then
+        return "%5.{' '}" .. (rn < 2 and "%#CursorLineNrTrans#" or "%#LineNrTrans#") .. "┆"
+    end
+    return get_stc_highlight(ln, rn) .. get_fold_symbol(ln) .. " %2.{'"..rn.."'}" .. (rn < 2 and "%#CursorLineNrTrans#" or "%#LineNrTrans#") .. "│"
+end
+
 vim.opt.ls = 3
 vim.opt.stl = "%{%v:lua.Statusline()%}"
 
@@ -84,3 +111,5 @@ vim.opt.wbr = "%{%v:lua.Windowbar()%}"
 
 vim.opt.stal = 2
 vim.opt.tal = "%{%v:lua.Tabbar()%}"
+
+vim.opt.stc = "%{%v:lua.Statuscolumn(v:lnum, v:relnum, v:virtnum)%}"
