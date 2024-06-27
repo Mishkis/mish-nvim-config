@@ -22,8 +22,6 @@ return {
     config = function()
         local keybindings = function()
             keys.set("<Leader>h", vim.lsp.buf.hover, "[h]over word")
-            keys.set("<Leader>d", vim.lsp.buf.definition, "Goto [d]efinition")
-            keys.set("<Leader>td", vim.lsp.buf.type_definition, "Goto [t]ype [d]efiniton")
         end
 
         require("mason-lspconfig").setup({

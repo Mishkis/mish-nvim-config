@@ -9,3 +9,5 @@ keys.set("<Leader><Leader>", function()
     -- Reload tab bar to actually show the updated registers.
     vim.opt.tal = "%{%v:lua.Tabbar()%}"
 end, "Swaps the + and p registers for pasting.")
+
+keys.set("<Leader>c", "<cmd>noh<cr>", "[c]lear highlights.")

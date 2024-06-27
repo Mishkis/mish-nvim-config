@@ -18,7 +18,9 @@ return {
         telescope.setup({
             defaults = {
                 preview = {
-                    filesize_limit = 1
+                    filesize_limit = 1,
+                    timeout = false,
+                    treesitter = true,
                 },
                 mappings = {
                     i = {
@@ -43,11 +45,15 @@ return {
         keys.set("<Leader>fc", builtin.commands, "[f]ind [c]ommands with telescope.")
         keys.set("<Leader>fC", builtin.command_history, "[f]ind past [C]ommands with telescope.")
 
-        keys.set("<Leader>fd", builtin.diagnostics, "[f]ind [d]iagnostics with telescope.")
+        -- Using LSP.
+        keys.set("<Leader>fd", builtin.lsp_definitions, "[f]ind [d]efinitions with telescope.")
+        keys.set("<Leader>ft", builtin.lsp_type_definitions, "[f]ind [t]ype definitions with telescope.")
+        keys.set("<Leader>fD", builtin.diagnostics, "[f]ind [D]iagnostics with telescope.")
+        keys.set("<Leader>fr", builtin.lsp_references, "[f]ind [r]eferences with telescope.")
 
         keys.set("<Leader>fh", builtin.highlights, "[f]ind [h]ighlights with telescope.")
 
-        keys.set("<Leader>fr", builtin.registers, "[f]ind [r]egisters with telescope.")
+        keys.set("<Leader>fR", builtin.registers, "[f]ind [R]egisters with telescope.")
 
         -- Extensions
         keys.set("<Leader>fp", "<cmd>Telescope projects<cr>", "[f]ind [p]rojects with projects")
