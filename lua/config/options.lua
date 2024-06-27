@@ -10,6 +10,11 @@ vim.opt.breakindent = true
 vim.opt.briopt = "shift:5,sbr"
 vim.opt.sbr = "--->"
 
+-- Fold Options, using ufo.
+vim.opt.foldcolumn = "1"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+
 vim.opt.display = "lastline"
 
 vim.opt.cmdheight = 2
