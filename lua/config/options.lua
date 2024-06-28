@@ -14,6 +14,7 @@ vim.opt.sbr = "--->"
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 
+-- Remove signcolumn as that is implemented in custom statuscolumn
 vim.opt.signcolumn = "no"
 
 vim.opt.display = "lastline"

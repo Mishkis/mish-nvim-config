@@ -27,6 +27,9 @@ return {
                         ["<esc>"] = actions.close,
                     },
                 },
+                path_display = function(opts, path)
+                    return path:gsub("\\", "/")
+                end
             },
         })
 
