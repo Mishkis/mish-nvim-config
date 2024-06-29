@@ -9,7 +9,11 @@ return {
         { "nvim-telescope/telescope-fzf-native.nvim", build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build" },
 
         -- Extensions
-        { "ahmedkhalf/project.nvim",                  main = "project_nvim",                                                                                                                 config = true },
+        {
+            "ahmedkhalf/project.nvim",
+            main = "project_nvim",
+            config = true
+        },
         "2kabhishek/nerdy.nvim",
     },
 
@@ -55,12 +59,13 @@ return {
         keys.set("<Leader>fD", builtin.diagnostics, "[f]ind [D]iagnostics with telescope.")
         keys.set("<Leader>fr", builtin.lsp_references, "[f]ind [r]eferences with telescope.")
 
+        -- Misc.
         keys.set("<Leader>fh", builtin.highlights, "[f]ind [h]ighlights with telescope.")
-
         keys.set("<Leader>fR", builtin.registers, "[f]ind [R]egisters with telescope.")
+        keys.set("<Leader>fv", builtin.treesitter, "[f]ind [v]ariables with telescope.")
 
         -- Extensions
-        keys.set("<Leader>fp", "<cmd>Telescope projects<cr>", "[f]ind [p]rojects with projects")
-        keys.set("<Leader>fe", "<cmd>Telescope nerdy<cr>", "[f]ind [e]moji with nerdy")
+        keys.set("<Leader>fp", "<cmd>Telescope projects<cr>", "[f]ind [p]rojects with project.")
+        keys.set("<Leader>fe", "<cmd>Telescope nerdy<cr>", "[f]ind [e]moji with nerdy.")
     end,
 }
