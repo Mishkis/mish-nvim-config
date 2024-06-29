@@ -1,14 +1,15 @@
 local keys = require("helpers.keys")
 
 return {
-    "nvim-telescope/telescope.nvim", branch = "0.1.x",
+    "nvim-telescope/telescope.nvim",
+    branch = "0.1.x",
     dependencies = {
         -- Required
         "nvim-lua/plenary.nvim",
         { "nvim-telescope/telescope-fzf-native.nvim", build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build" },
 
         -- Extensions
-        { "ahmedkhalf/project.nvim", main = "project_nvim", config = true },
+        { "ahmedkhalf/project.nvim",                  main = "project_nvim",                                                                                                                 config = true },
         "2kabhishek/nerdy.nvim",
     },
 
@@ -44,7 +45,7 @@ return {
         keys.set("<Leader>fw", builtin.live_grep, "[f]ind [w]ords with telescope grep.")
         keys.set("<Leader>fb", builtin.buffers, "[f]ind [b]uffers with telescope.")
 
-        -- Command navigation                                                                                  
+        -- Command navigation
         keys.set("<Leader>fc", builtin.commands, "[f]ind [c]ommands with telescope.")
         keys.set("<Leader>fC", builtin.command_history, "[f]ind past [C]ommands with telescope.")
 

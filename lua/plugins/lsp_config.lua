@@ -4,7 +4,7 @@ local servers = {
     lua_ls = {
         Lua = {
             diagnostics = {
-                globals = {"vim"}
+                globals = { "vim" }
             }
         }
     }
@@ -30,7 +30,7 @@ return {
 
         local capabilites = require("cmp_nvim_lsp").default_capabilities()
         require("mason-lspconfig").setup_handlers {
-            function (server_name)
+            function(server_name)
                 local config = {
                     on_attach = keybindings,
                     settings = servers[server_name],

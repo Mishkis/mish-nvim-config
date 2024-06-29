@@ -20,7 +20,7 @@ return {
                     name = "Log"
                 },
             },
-            })
-            require("nvim-web-devicons").set_default_icon("", "#bdeebf")
-        end,
-    }
+        })
+        require("nvim-web-devicons").set_default_icon("", "#bdeebf")
+    end,
+}

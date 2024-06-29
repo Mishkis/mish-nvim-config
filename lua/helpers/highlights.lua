@@ -4,6 +4,6 @@ return {
     end,
 
     get = function(highlight)
-        return vim.api.nvim_get_hl(0, {name = highlight})
+        return vim.api.nvim_get_hl(0, { name = highlight })
     end
 }

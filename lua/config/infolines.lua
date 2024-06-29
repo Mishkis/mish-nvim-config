@@ -9,26 +9,26 @@ end
 
 local function get_mode()
     local text_mode = mode.isInsert() and "  INSERT"
-    or mode.isVisual() and "󰒇  VISUAL"
-    or mode.isCommand() and "  COMMAND"
-    or mode.isReplace() and "  REPLACE"
-    or "  NORMAL"
+        or mode.isVisual() and "󰒇  VISUAL"
+        or mode.isCommand() and "  COMMAND"
+        or mode.isReplace() and "  REPLACE"
+        or "  NORMAL"
     return text_mode
 end
 
 local function get_icon()
     local icon, color = require("nvim-web-devicons").get_icon_color_by_filetype(vim.bo.filetype)
 
-    hl.set("ModifiedWinBarTrans", {fg = col.replaceModeBG, bg = color})
-    hl.set("WinBarLeft", {fg = col.normalModeBlack, bg = color})
-    hl.set("WinBarLeftTrans", {fg = color, bg = hl.get("WinBarLeftTrans").bg})
+    hl.set("ModifiedWinBarTrans", { fg = col.replaceModeBG, bg = color })
+    hl.set("WinBarLeft", { fg = col.normalModeBlack, bg = color })
+    hl.set("WinBarLeftTrans", { fg = color, bg = hl.get("WinBarLeftTrans").bg })
 
     return icon
 end
 
 local function get_version()
     local version = vim.version()
-    return "NVIM v"..version.major.."."..version.minor.."."..version.patch
+    return "NVIM v" .. version.major .. "." .. version.minor .. "." .. version.patch
 end
 
 local function get_current_lsp_server()
@@ -36,7 +36,7 @@ local function get_current_lsp_server()
     if server == {} or server[1] == nil then
         return "N/A 󰒑 "
     else
-        return server[1].name.."  "
+        return server[1].name .. "  "
     end
 end
 
@@ -46,24 +46,26 @@ local function shorten_string(str)
     output = (string.gsub(output, "'", "\'"))
     output = (string.gsub(output, "%%", "%%%%"))
     if string.len(str) > 20 then
-        output = output.."..."
+        output = output .. "..."
     end
 
     return output
 end
 
 local function get_lsp_information()
-    local errors = vim.diagnostic.get(0, { severity =  1 })
+    local errors = vim.diagnostic.get(0, { severity = 1 })
     local error_count = vim.tbl_count(errors)
 
-    local warning_count = vim.tbl_count(vim.diagnostic.get(0, { severity =  2 }))
+    local warning_count = vim.tbl_count(vim.diagnostic.get(0, { severity = 2 }))
 
     local output = ""
     if error_count ~= 0 then
-        output = output .. hi("StatusError") .. ""..errors[1].lnum.." "..shorten_string(errors[1].message).."  "..error_count.." "
+        output = output ..
+            hi("StatusError") .. "" .. errors[1].lnum .. " " .. shorten_string(errors[1].message) .. "  " ..
+            error_count .. " "
     end
     if warning_count ~= 0 then
-        output = output .. hi("StatusWarning") .. " "..warning_count.." "
+        output = output .. hi("StatusWarning") .. " " .. warning_count .. " "
     end
 
     return output
@@ -72,7 +74,7 @@ end
 -- The following are only used by the status column.
 local function get_fold_symbol(line_num)
     return vim.fn.foldlevel(line_num) > vim.fn.foldlevel(line_num - 1)
-    and (vim.fn.foldclosed(line_num) == -1 and "" or "") or " "
+        and (vim.fn.foldclosed(line_num) == -1 and "" or "") or " "
 end
 
 local function get_stc_highlight(line_num, rel_line_num)
@@ -98,22 +100,62 @@ local function get_stc_highlight(line_num, rel_line_num)
 end
 
 function Statusline()
-    return hi("WinMode") .. " %-10.{'"..get_mode().."'} " .. hi("WinModeTrans") .. " 󱧷 %F " .. hi("ModifiedTrans") .. "%{%&modified ? '" .. hi("Modified") .. "󱙄 " .. hi("ModifiedTrans") .. "' : ''%}" .. hi("WinModeTrans") .. "%="..get_lsp_information().."" .. hi("WinModeTrans") .. "󰉸 %-4.L " .. hi("WinModeTrans#%#WinMode") .. "   %-3.l%-3.(:%)%-3.c"
+    return hi("WinMode") ..
+        " %-10.{'" ..
+        get_mode() ..
+        "'} " ..
+        hi("WinModeTrans") ..
+        " 󱧷 %F " ..
+        hi("ModifiedTrans") ..
+        "%{%&modified ? '" ..
+        hi("Modified") ..
+        "󱙄 " ..
+        hi("ModifiedTrans") ..
+        "' : ''%}" ..
+        hi("WinModeTrans") ..
+        "%=" ..
+        get_lsp_information() ..
+        "" .. hi("WinModeTrans") .. "󰉸 %-4.L " .. hi("WinModeTrans#%#WinMode") .. "   %-3.l%-3.(:%)%-3.c"
 end
 
 function Windowbar()
-    return "%{%&modified ? '" .. hi("Modified") .. " 󱙄 " .. hi("ModifiedWinBarTrans") .. "' : ''%}" .. hi("WinBarLeft") .. "  %t " .. hi("WinBarLeftTrans#%=%#WinBarRight") .. "  %{winnr()} "..get_icon().."  "
+    return "%{%&modified ? '" ..
+        hi("Modified") ..
+        " 󱙄 " ..
+        hi("ModifiedWinBarTrans") ..
+        "' : ''%}" ..
+        hi("WinBarLeft") ..
+        "  %t " .. hi("WinBarLeftTrans#%=%#WinBarRight") .. "  %{winnr()} " .. get_icon() .. "  "
 end
 
 function Tabbar()
-    return hi("TabNeovim") .. "  "..get_version().." " .. hi("TabNeovimTrans") .. "   Windows: %{len(nvim_list_wins())} " .. hi("TabLeftStart#%#TabLeft") .. " 󰆒  \""..shorten_string(registers.get("p")).."\" " .. hi("TabMain#%=%#TabRight") .. "    \""..shorten_string(registers.get("+")).."\" " .. hi("TabFlagTrans#%#TabFlagBlue#%#TabFlagPink#%#TabFlagWhite#%#TabFlagBlue#%#TabFlagTrans#%#TabRight") .. " "..get_current_lsp_server().." "
+    return hi("TabNeovim") ..
+        "  " ..
+        get_version() ..
+        " " ..
+        hi("TabNeovimTrans") ..
+        "   Windows: %{len(nvim_list_wins())} " ..
+        hi("TabLeftStart#%#TabLeft") ..
+        " 󰆒  \"" ..
+        shorten_string(registers.get("p")) ..
+        "\" " ..
+        hi("TabMain#%=%#TabRight") ..
+        "    \"" ..
+        shorten_string(registers.get("+")) ..
+        "\" " ..
+        hi("TabFlagTrans#%#TabFlagBlue#%#TabFlagPink#%#TabFlagWhite#%#TabFlagBlue#%#TabFlagTrans#%#TabRight") ..
+        " " .. get_current_lsp_server() .. " "
 end
 
 function Statuscolumn(ln, rn, vn)
     if vn ~= 0 then
         return "%5.{' '}" .. (rn < 2 and "" .. hi("CursorLineNrTrans") .. "" or "" .. hi("LineNrTrans") .. "") .. "┆"
     end
-    return get_stc_highlight(ln, rn) .. get_fold_symbol(ln) .. " %2.{'"..rn.."'}" .. (rn < 2 and "" .. hi("CursorLineNrTrans") .. "" or "" .. hi("LineNrTrans") .. "") .. "│"
+
+    return get_stc_highlight(ln, rn) ..
+        get_fold_symbol(ln) ..
+        " %2.{'" ..
+        rn .. "'}" .. (rn < 2 and "" .. hi("CursorLineNrTrans") .. "" or "" .. hi("LineNrTrans") .. "") .. "│"
 end
 
 vim.opt.ls = 3

@@ -30,7 +30,7 @@ local function ModeUpdate(colors)
             background = colors[background]
         end
 
-        hl.set(targetHighlight, {fg = foreground, bg = background})
+        hl.set(targetHighlight, { fg = foreground, bg = background })
     end
 end
 

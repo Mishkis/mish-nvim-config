@@ -8,7 +8,7 @@ return {
 
     opts = {
         triggers_blacklist = {
-            n = {"v"}
+            n = { "v" }
         }
     },
 
@@ -16,10 +16,10 @@ return {
         local wk = require("which-key")
         wk.setup(opts)
         wk.register({
-           f = { name = "[f]ind using Telescope." },
-           t = { name = "Goto [t]ype [d]efinition." },
-           s = { name = "[s]elect using treesitter textobjects." },
-           g = { name = "[g]it commands."},
+            f = { name = "[f]ind using Telescope." },
+            t = { name = "Goto [t]ype [d]efinition." },
+            s = { name = "[s]elect using treesitter textobjects." },
+            g = { name = "[g]it commands." },
         }, { prefix = "<Leader>" })
     end
 }

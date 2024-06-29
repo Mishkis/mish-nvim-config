@@ -6,7 +6,7 @@ return {
         skip_confirm_for_simple_edits = true
     },
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function ()
+    config = function()
         require("oil").setup()
 
         keys.set("<Leader>e", "<cmd>Oil<cr>", "[e]dit with oil in current file's directory.")

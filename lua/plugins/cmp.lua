@@ -74,9 +74,9 @@ return {
             },
 
             sources = cmp.config.sources({
-                { name = "snippy", group_index = 1 },
+                { name = "snippy",   group_index = 1 },
                 { name = "nvim_lsp", group_index = 2 },
-                { name = "buffer", group_index = 3 },
+                { name = "buffer",   group_index = 3 },
             }),
 
             experimental = {
@@ -93,7 +93,7 @@ return {
                 { name = "buffer" },
             })
         })
-        require("cmp_git").setup() ]]-- 
+        require("cmp_git").setup() ]] --
 
         -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won"t work anymore).
         cmp.setup.cmdline({ "/", "?" }, {
@@ -114,12 +114,12 @@ return {
             matching = { disallow_symbol_nonprefix_matching = false }
         })
 
-        hl.set("CmpItemKindDefault", {fg = col.lightPink})
-        hl.set("CmpItemKindFunctionDefault", {link = "@keyword.function"})
-        hl.set("CmpItemKindSnippetDefault", {fg = col.transPink})
-        hl.set("CmpItemKindPropertyDefault", {link = "@property"})
-        hl.set("CmpItemKindVariableDefault", {link = "@variable"})
-        hl.set("CmpItemKindTextDefault", {link = "Comment"})
+        hl.set("CmpItemKindDefault", { fg = col.lightPink })
+        hl.set("CmpItemKindFunctionDefault", { link = "@keyword.function" })
+        hl.set("CmpItemKindSnippetDefault", { fg = col.transPink })
+        hl.set("CmpItemKindPropertyDefault", { link = "@property" })
+        hl.set("CmpItemKindVariableDefault", { link = "@variable" })
+        hl.set("CmpItemKindTextDefault", { link = "Comment" })
         -- cmp_nvim_lsp is set up in lsp_config.
     end,
 }

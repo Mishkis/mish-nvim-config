@@ -1,4 +1,4 @@
-local languages = { "c", "lua", "vim", "vimdoc", "query", "python", "c_sharp", "javascript", "markdown", "toml", "json"}
+local languages = { "c", "lua", "vim", "vimdoc", "query", "python", "c_sharp", "javascript", "markdown", "toml", "json" }
 
 return {
     "nvim-treesitter/nvim-treesitter",
@@ -45,7 +45,7 @@ return {
 
                     selection_modes = {
                         ['@parameter.outer'] = 'v', -- charwise
-                        ['@function.outer'] = 'V', -- linewise
+                        ['@function.outer'] = 'V',  -- linewise
                         ['@class.outer'] = '<c-v>', -- blockwise
                     },
                     include_surrounding_whitespace = true,
