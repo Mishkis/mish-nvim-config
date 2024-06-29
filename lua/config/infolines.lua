@@ -80,7 +80,7 @@ local function get_stc_highlight(line_num, rel_line_num)
     return is_error and "%#ErrorLineNr# "
         or is_warning and "%#WarningLineNr# "
         or is_info and "%#InfoLineNr# "
-        or is_hint and "%#InfoLineNr# "
+        or is_hint and "%#HintLineNr# "
         or rel_line_num < 2 and "%#CursorLineNr# "
         or "%#LineNr# "
 end

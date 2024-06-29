@@ -47,12 +47,20 @@ local highlights = {
     NvimInternalError = {bg = col.red},
     WarningMsg = {fg = col.orange},
 
+    -- Diagnostic Errors
+    DiagnosticError = {fg = col.replaceModeBG, bg = col.diagnosticRed},
+    DiagnosticWarn = {fg = col.orange, bg = col.diagnosticOrange},
+    DiagnosticInfo = {fg = col.visualModeBG, bg = col.diagnosticLightBlue},
+    DiagnosticHint = {fg = col.transBlue, bg = col.diagnosticBlue},
+    DiagnosticOk = {fg = col.insertModeBG, bg = col.diagnosticGreen},
+
     -- Line Numbers
     LineNr = {fg = col.pink, bg = col.darkPurple},
     CursorLineNr = {fg = col.whitePink, bg = col.greyPink},
-    ErrorLineNr = {fg = col.normalModeFG, bg = col.red},
+    ErrorLineNr = {fg = col.normalModeFG, bg = col.replaceModeBG},
     WarningLineNr = {fg = col.normalModeFG, bg = col.orange},
-    InfoLineNr = {fg = col.normalModeFG, bg = col.transBlue},
+    InfoLineNr = {fg = col.normalModeFG, bg = col.visualModeBG},
+    HintLineNr = {fg = col.normalModeFG, bg = col.transBlue},
     LineNrTrans = {fg = col.pink, bg = col.background},
     CursorLineNrTrans = {fg = col.whitePink, bg = col.background},
     LineNrDeselected = {fg = col.pink, bg = col.normalModeBlack},

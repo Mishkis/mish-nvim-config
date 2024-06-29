@@ -27,6 +27,13 @@ return {
 
     menuBackground = "#594e62",
 
+    --Background for diagnostic Colors
+    diagnosticRed = "#3b3232",
+    diagnosticOrange = "#403b35",
+    diagnosticBlue = "#3b3e44",
+    diagnosticLightBlue = "#454b4d",
+    diagnosticGreen = "#343b33",
+
     --General Colors
     whitePink = "#e3cee9",
     lightPink = "#eeb5ed",
