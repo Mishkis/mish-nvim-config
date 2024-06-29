@@ -3,6 +3,10 @@ local hl = require("helpers.highlights")
 local mode = require("helpers.mode")
 local registers = require("helpers.registers")
 
+local function hi(highlight)
+    return "%#" .. highlight .. "#"
+end
+
 local function get_mode()
     local text_mode = mode.isInsert() and "  INSERT"
         or mode.isVisual() and "󰒇  VISUAL"
@@ -56,10 +60,10 @@ local function get_lsp_information()
 
     local output = ""
     if error_count ~= 0 then
-        output = output.."%#StatusError#"..errors[1].lnum.." "..shorten_string(errors[1].message).."  "..error_count.." "
+        output = output .. hi("StatusError") .. ""..errors[1].lnum.." "..shorten_string(errors[1].message).."  "..error_count.." "
     end
     if warning_count ~= 0 then
-        output = output.."%#StatusWarning# "..warning_count.." "
+        output = output .. hi("StatusWarning") .. " "..warning_count.." "
     end
 
     return output
@@ -77,31 +81,31 @@ local function get_stc_highlight(line_num, rel_line_num)
     local is_info = not vim.tbl_isempty(vim.diagnostic.get(0, { lnum = line_num - 1, severity = 3 }))
     local is_hint = not vim.tbl_isempty(vim.diagnostic.get(0, { lnum = line_num - 1, severity = 4 }))
 
-    return is_error and "%#ErrorLineNr# "
-        or is_warning and "%#WarningLineNr# "
-        or is_info and "%#InfoLineNr# "
-        or is_hint and "%#HintLineNr# "
-        or rel_line_num < 2 and "%#CursorLineNr# "
-        or "%#LineNr# "
+    return is_error and hi("ErrorLineNr") .. " "
+        or is_warning and hi("WarningLineNr") .. " "
+        or is_info and hi("InfoLineNr") .. " "
+        or is_hint and hi("HintLineNr") .. " "
+        or rel_line_num < 2 and hi("CursorLineNr") .. " "
+        or hi("LineNr") .. " "
 end
 
 function Statusline()
-    return "%#WinMode# %-10.{'"..get_mode().."'} %#WinModeTrans# 󱧷 %F %#ModifiedTrans#%{%&modified ? '%#Modified#󱙄 %#ModifiedTrans#' : ''%}%#WinModeTrans#%="..get_lsp_information().."%#WinModeTrans#󰉸 %-4.L %#WinModeTrans#%#WinMode#   %-3.l%-3.(:%)%-3.c"
+    return hi("WinMode") .. " %-10.{'"..get_mode().."'} " .. hi("WinModeTrans") .. " 󱧷 %F " .. hi("ModifiedTrans") .. "%{%&modified ? '" .. hi("Modified") .. "󱙄 " .. hi("ModifiedTrans") .. "' : ''%}" .. hi("WinModeTrans") .. "%="..get_lsp_information().."" .. hi("WinModeTrans") .. "󰉸 %-4.L " .. hi("WinModeTrans#%#WinMode") .. "   %-3.l%-3.(:%)%-3.c"
 end
 
 function Windowbar()
-    return "%{%&modified ? '%#Modified# 󱙄 %#ModifiedWinBarTrans#' : ''%}%#WinBarLeft#  %t %#WinBarLeftTrans#%=%#WinBarRight#  %{winnr()} "..get_icon().."  "
+    return "%{%&modified ? '" .. hi("Modified") .. " 󱙄 " .. hi("ModifiedWinBarTrans") .. "' : ''%}" .. hi("WinBarLeft") .. "  %t " .. hi("WinBarLeftTrans#%=%#WinBarRight") .. "  %{winnr()} "..get_icon().."  "
 end
 
 function Tabbar()
-    return "%#TabNeovim#  "..get_version().." %#TabNeovimTrans#   Windows: %{len(nvim_list_wins())} %#TabLeftStart#%#TabLeft# 󰆒  \""..shorten_string(registers.get("p")).."\" %#TabMain#%=%#TabRight#    \""..shorten_string(registers.get("+")).."\" %#TabFlagTrans#%#TabFlagBlue#%#TabFlagPink#%#TabFlagWhite#%#TabFlagBlue#%#TabFlagTrans#%#TabRight# "..get_current_lsp_server().." "
+    return hi("TabNeovim") .. "  "..get_version().." " .. hi("TabNeovimTrans") .. "   Windows: %{len(nvim_list_wins())} " .. hi("TabLeftStart#%#TabLeft") .. " 󰆒  \""..shorten_string(registers.get("p")).."\" " .. hi("TabMain#%=%#TabRight") .. "    \""..shorten_string(registers.get("+")).."\" " .. hi("TabFlagTrans#%#TabFlagBlue#%#TabFlagPink#%#TabFlagWhite#%#TabFlagBlue#%#TabFlagTrans#%#TabRight") .. " "..get_current_lsp_server().." "
 end
 
 function Statuscolumn(ln, rn, vn)
     if vn ~= 0 then
-        return "%5.{' '}" .. (rn < 2 and "%#CursorLineNrTrans#" or "%#LineNrTrans#") .. "┆"
+        return "%5.{' '}" .. (rn < 2 and "" .. hi("CursorLineNrTrans") .. "" or "" .. hi("LineNrTrans") .. "") .. "┆"
     end
-    return get_stc_highlight(ln, rn) .. get_fold_symbol(ln) .. " %2.{'"..rn.."'}" .. (rn < 2 and "%#CursorLineNrTrans#" or "%#LineNrTrans#") .. "│"
+    return get_stc_highlight(ln, rn) .. get_fold_symbol(ln) .. " %2.{'"..rn.."'}" .. (rn < 2 and "" .. hi("CursorLineNrTrans") .. "" or "" .. hi("LineNrTrans") .. "") .. "│"
 end
 
 vim.opt.ls = 3
