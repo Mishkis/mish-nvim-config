@@ -57,10 +57,19 @@ local highlights = {
     -- Line Numbers
     LineNr = {fg = col.pink, bg = col.darkPurple},
     CursorLineNr = {fg = col.whitePink, bg = col.greyPink},
+
     ErrorLineNr = {fg = col.normalModeFG, bg = col.replaceModeBG},
+    CursorErrorLineNr = {fg = col.whitePink, bg = col.replaceModeBG},
+
     WarningLineNr = {fg = col.normalModeFG, bg = col.orange},
+    CursorWarningLineNr = {fg = col.whitePink, bg = col.orange},
+
     InfoLineNr = {fg = col.normalModeFG, bg = col.visualModeBG},
+    CursorInfoLineNr = {fg = col.whitePink, bg = col.visualModeBG},
+
     HintLineNr = {fg = col.normalModeFG, bg = col.transBlue},
+    CursorHintLineNr = {fg = col.whitePink, bg = col.transBlue},
+
     LineNrTrans = {fg = col.pink, bg = col.background},
     CursorLineNrTrans = {fg = col.whitePink, bg = col.background},
     LineNrDeselected = {fg = col.pink, bg = col.normalModeBlack},

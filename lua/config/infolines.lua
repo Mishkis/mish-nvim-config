@@ -9,10 +9,10 @@ end
 
 local function get_mode()
     local text_mode = mode.isInsert() and "  INSERT"
-        or mode.isVisual() and "󰒇  VISUAL"
-        or mode.isCommand() and "  COMMAND"
-        or mode.isReplace() and "  REPLACE"
-        or "  NORMAL"
+    or mode.isVisual() and "󰒇  VISUAL"
+    or mode.isCommand() and "  COMMAND"
+    or mode.isReplace() and "  REPLACE"
+    or "  NORMAL"
     return text_mode
 end
 
@@ -72,21 +72,29 @@ end
 -- The following are only used by the status column.
 local function get_fold_symbol(line_num)
     return vim.fn.foldlevel(line_num) > vim.fn.foldlevel(line_num - 1)
-        and (vim.fn.foldclosed(line_num) == -1 and "" or "") or " "
+    and (vim.fn.foldclosed(line_num) == -1 and "" or "") or " "
 end
 
 local function get_stc_highlight(line_num, rel_line_num)
-    local is_error = not vim.tbl_isempty(vim.diagnostic.get(0, { lnum = line_num - 1, severity = 1 }))
-    local is_warning = not vim.tbl_isempty(vim.diagnostic.get(0, { lnum = line_num - 1, severity = 2 }))
-    local is_info = not vim.tbl_isempty(vim.diagnostic.get(0, { lnum = line_num - 1, severity = 3 }))
-    local is_hint = not vim.tbl_isempty(vim.diagnostic.get(0, { lnum = line_num - 1, severity = 4 }))
+    local highlight = ""
 
-    return is_error and hi("ErrorLineNr") .. " "
-        or is_warning and hi("WarningLineNr") .. " "
-        or is_info and hi("InfoLineNr") .. " "
-        or is_hint and hi("HintLineNr") .. " "
-        or rel_line_num < 2 and hi("CursorLineNr") .. " "
-        or hi("LineNr") .. " "
+    if vim.tbl_isempty(vim.diagnostic.get(0, { lnum = line_num - 1 })) then
+        highlight = "LineNr"
+    elseif not vim.tbl_isempty(vim.diagnostic.get(0, { lnum = line_num - 1, severity = 1 })) then
+        highlight = "ErrorLineNr"
+    elseif not vim.tbl_isempty(vim.diagnostic.get(0, { lnum = line_num - 1, severity = 2 })) then
+        highlight = "WarningLineNr"
+    elseif not vim.tbl_isempty(vim.diagnostic.get(0, { lnum = line_num - 1, severity = 3 })) then
+        highlight = "InfoLineNr"
+    elseif not vim.tbl_isempty(vim.diagnostic.get(0, { lnum = line_num - 1, severity = 4 })) then
+        highlight = "HintLineNr"
+    end
+
+    if rel_line_num < 2 then
+        highlight = "Cursor" .. highlight
+    end
+
+    return hi(highlight) .. " "
 end
 
 function Statusline()
