@@ -7,6 +7,7 @@ local highlights = {
     WinSeparator = { fg = col.normalModeBG },
     Normal = { fg = col.text, bg = col.background },
     NormalNC = { fg = col.text, bg = col.black },
+    Folded = { link = "Normal" },
     MsgArea = { fg = col.text, bg = col.black },
     Visual = { bg = col.lightGreyPink },
 
@@ -39,7 +40,6 @@ local highlights = {
     FloatBorder = { fg = col.text, bg = col.darkPurple },
 
     Conceal = { bg = col.greyPink },
-    Folded = { fg = col.pink, bg = col.darkPurple },
 
     -- Errors
     Error = { fg = col.lightRed, bg = col.red },
