@@ -32,7 +32,7 @@ local function get_version()
 end
 
 local function get_current_lsp_server()
-    local server = vim.lsp.get_active_clients({ bufnr = vim.api.nvim_get_current_buf() })
+    local server = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
     if server == {} or server[1] == nil then
         return "N/A 󰒑 "
     else
@@ -72,9 +72,16 @@ local function get_lsp_information()
 end
 
 -- The following are only used by the status column.
-local function get_fold_symbol(line_num)
-    return vim.fn.foldlevel(line_num) > vim.fn.foldlevel(line_num - 1)
-        and (vim.fn.foldclosed(line_num) == -1 and "" or "") or " "
+
+local function get_breakpoint_symbol(line_num, rel_line_num)
+    local is_breakpoint = not vim.tbl_isempty(vim.fn.sign_getplaced(
+        vim.api.nvim_get_current_buf(),
+        { group = "dap_breakpoints", lnum = line_num }
+    )[1].signs)
+
+    local highlight = (rel_line_num < 2) and hi("CursorBreakpointLineNr") or hi("BreakpointLineNr")
+
+    return highlight .. (is_breakpoint and "" or " ")
 end
 
 local function get_stc_highlight(line_num, rel_line_num)
@@ -96,9 +103,15 @@ local function get_stc_highlight(line_num, rel_line_num)
         highlight = "Cursor" .. highlight
     end
 
-    return hi(highlight) .. " "
+    return hi(highlight)
 end
 
+local function get_fold_symbol(line_num)
+    return vim.fn.foldlevel(line_num) > vim.fn.foldlevel(line_num - 1)
+        and (vim.fn.foldclosed(line_num) == -1 and "" or "") or " "
+end
+
+-- These are called from the respctive settings.
 function Statusline()
     return hi("WinMode") ..
         " %-10.{'" ..
@@ -152,7 +165,8 @@ function Statuscolumn(ln, rn, vn)
         return "%5.{' '}" .. (rn < 2 and "" .. hi("CursorLineNrTrans") .. "" or "" .. hi("LineNrTrans") .. "") .. "┆"
     end
 
-    return get_stc_highlight(ln, rn) ..
+    return get_breakpoint_symbol(ln, rn) ..
+        get_stc_highlight(ln, rn) ..
         get_fold_symbol(ln) ..
         " %2.{'" ..
         rn .. "'}" .. (rn < 2 and "" .. hi("CursorLineNrTrans") .. "" or "" .. hi("LineNrTrans") .. "") .. "│"

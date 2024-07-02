@@ -70,6 +70,9 @@ local highlights = {
     HintLineNr = { fg = col.normalModeFG, bg = col.transBlue },
     CursorHintLineNr = { fg = col.whitePink, bg = col.transBlue },
 
+    BreakpointLineNr = { fg = col.replaceModeBG, bg = col.darkPurple },
+    CursorBreakpointLineNr = { fg = col.replaceModeBG, bg = col.greyPink },
+
     LineNrTrans = { fg = col.pink, bg = col.background },
     CursorLineNrTrans = { fg = col.whitePink, bg = col.background },
     LineNrDeselected = { fg = col.pink, bg = col.normalModeBlack },
