@@ -81,7 +81,7 @@ local function get_breakpoint_symbol(line_num, rel_line_num)
 
     local highlight = (rel_line_num < 2) and hi("CursorBreakpointLineNr") or hi("BreakpointLineNr")
 
-    return highlight .. (is_breakpoint and "" or " ")
+    return is_breakpoint and highlight .. "" or " "
 end
 
 local function get_stc_highlight(line_num, rel_line_num)
@@ -165,8 +165,8 @@ function Statuscolumn(ln, rn, vn)
         return "%5.{' '}" .. (rn < 2 and "" .. hi("CursorLineNrTrans") .. "" or "" .. hi("LineNrTrans") .. "") .. "┆"
     end
 
-    return get_breakpoint_symbol(ln, rn) ..
-        get_stc_highlight(ln, rn) ..
+    return get_stc_highlight(ln, rn) ..
+        get_breakpoint_symbol(ln, rn) ..
         get_fold_symbol(ln) ..
         " %2.{'" ..
         rn .. "'}" .. (rn < 2 and "" .. hi("CursorLineNrTrans") .. "" or "" .. hi("LineNrTrans") .. "") .. "│"

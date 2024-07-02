@@ -21,5 +21,6 @@ return {
 
         keys.set("<Leader>dc", function() dap.continue() end, "[d]ap [c]ontinue.")
         keys.set("<Leader>db", function() dap.toggle_breakpoint() end, "[d]ap toggle [b]reakpoint.")
+        keys.set("<Leader>dc", function() dap.clear_breakpoints() end, "[d]ap [c]lear breakpoints.")
     end
 }
