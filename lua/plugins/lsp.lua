@@ -1,14 +1,6 @@
 local keys = require("helpers.keys")
 
-local servers = {
-    lua_ls = {
-        Lua = {
-            diagnostics = {
-                globals = { "vim" }
-            }
-        }
-    }
-}
+local servers = {}
 
 return {
     "neovim/nvim-lspconfig",
@@ -16,6 +8,13 @@ return {
     dependencies = {
         { "williamboman/mason.nvim", config = true },
         "williamboman/mason-lspconfig.nvim",
+
+        {
+            "folke/lazydev.nvim",
+            ft = "lua",
+            opts = { library = {} }
+        },
+
         "hrsh7th/cmp-nvim-lsp",
     },
 
