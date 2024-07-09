@@ -45,10 +45,4 @@ return {
             }
         end,
     },
-    {
-        "mfussenegger/nvim-jdtls",
-        dependencies = {
-            "nvim-dap"
-        },
-    },
 }
