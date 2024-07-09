@@ -1,6 +1,7 @@
 return {
     {
         "altermo/ultimate-autopair.nvim",
+        event = "ModeChanged",
         opts = {
             fastwarp = {
                 fastwarp = true,

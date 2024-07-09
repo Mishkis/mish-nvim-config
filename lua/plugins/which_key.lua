@@ -12,9 +12,9 @@ return {
         }
     },
 
-    config = function(opts)
+    config = function()
         local wk = require("which-key")
-        wk.setup(opts)
+        wk.setup()
         wk.register({
             f = { name = "[f]ind using Telescope." },
             t = { name = "Goto [t]ype [d]efinition." },

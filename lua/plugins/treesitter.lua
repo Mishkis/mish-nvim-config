@@ -6,6 +6,7 @@ return {
         "nvim-treesitter/nvim-treesitter-textobjects",
     },
     main = "nvim-treesitter.configs",
+    event = "VeryLazy",
     opts = {
         ensure_installed = languages,
 

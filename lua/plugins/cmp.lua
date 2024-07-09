@@ -3,7 +3,6 @@ local hl = require("helpers.highlights")
 
 return {
     "hrsh7th/nvim-cmp",
-    event = "VeryLazy",
     dependencies = {
         "neovim/nvim-lspconfig",
         "hrsh7th/cmp-buffer",
@@ -12,6 +11,7 @@ return {
         "dcampos/nvim-snippy",
         "dcampos/cmp-snippy",
     },
+
     config = function()
         -- Set up nvim-cmp.
         local cmp = require("cmp")

@@ -1,5 +1,3 @@
-local keys = require("helpers.keys")
-
 return {
     "mfussenegger/nvim-dap",
     dependencies = {
@@ -8,20 +6,28 @@ return {
         { "theHamsta/nvim-dap-virtual-text", dependencies = { "nvim-neotest/nvim-nio" }, opts = {} },
 
         -- Language specific
-        "mfussenegger/nvim-dap-python",
+        {
+            "mfussenegger/nvim-dap-python",
+            ft = "py",
+            config = function()
+                require("dap-python").setup("python")
+            end
+        },
     },
-
-    config = function()
-        local dap = require("dap")
-
-        require("dap-python").setup("python")
-
-        keys.set("<Leader>dc", function()
-            require("dapui").open()
-            dap.continue()
-        end, "[d]ap [c]ontinue.")
-        keys.set("<Leader>db", function() dap.toggle_breakpoint() end, "[d]ap toggle [b]reakpoint.")
-        keys.set("<Leader>dC", function() dap.clear_breakpoints() end, "[d]ap [C]lear breakpoints.")
-        keys.set("<Leader>du", function() require("dapui").toggle() end, "[d]ap toggle [u]i.")
-    end
+    keys = {
+        {
+            "<Leader>dc",
+            function()
+                require("dapui").open()
+                require("dap").continue()
+            end,
+            desc = "[d]ap [c]ontinue"
+        },
+        { "<Leader>db", function() require("dap").toggle_breakpoint() end, "[d]ap toggle [b]reakpoint." },
+        { "<Leader>dC", function() require("dap").clear_breakpoints() end, "[d]ap [C]lear breakpoints." },
+        { "<Leader>du", function() require("dapui").toggle() end,          "[d]ap toggle [u]i." },
+    },
+    -- config = function()
+    --     require("dap-python").setup("python")
+    -- end
 }

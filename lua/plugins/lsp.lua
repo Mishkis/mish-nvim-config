@@ -37,10 +37,7 @@ return {
                         capabilites = capabilites,
                     }
 
-                    -- jdtls is setup by different plugin, see below.
-                    if server_name ~= "jdtls" then
-                        require("lspconfig")[server_name].setup(config)
-                    end
+                    require("lspconfig")[server_name].setup(config)
                 end,
             }
         end,

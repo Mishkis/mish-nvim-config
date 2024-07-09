@@ -1,12 +1,10 @@
-local keys = require("helpers.keys")
-
 return {
     "tpope/vim-fugitive",
-    config = function()
-        keys.set("<Leader>ga", "<cmd>Git add *<cr>", "[g]it [a]dd all.")
-        keys.set("<Leader>gs", "<cmd>Git status<cr>", "[g]it [s]tatus.")
-        keys.set("<Leader>gc", "<cmd>Git commit<cr>", "[g]it [c]ommit.")
-        keys.set("<Leader>gp", "<cmd>Git push<cr>", "[g]it [p]ush.")
-        keys.set("<Leader>gd", "<cmd>Git diff<cr>", "[g]it [d]iff.")
-    end
+    keys = {
+        { "<Leader>ga", "<cmd>Git add *<cr>",  desc = "[g]it [a]dd all." },
+        { "<Leader>gs", "<cmd>Git status<cr>", desc = "[g]it [s]tatus." },
+        { "<Leader>gc", "<cmd>Git commit<cr>", desc = "[g]it [c]ommit." },
+        { "<Leader>gp", "<cmd>Git push<cr>",   desc = "[g]it [p]ush." },
+        { "<Leader>gd", "<cmd>Git diff<cr>",   desc = "[g]it [d]iff." },
+    }
 }
