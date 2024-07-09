@@ -51,3 +51,8 @@ vim.opt.inccommand = "split"
 vim.opt.termguicolors = true
 
 vim.opt.shellslash = true
+
+vim.diagnostic.config({
+    -- Using lsp_lines.
+    virtual_text = false
+})

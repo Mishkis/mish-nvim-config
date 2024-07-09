@@ -4,8 +4,8 @@ return {
     "mfussenegger/nvim-dap",
     dependencies = {
         -- Extensions
-        "rcarriga/nvim-dap-ui",
-        { "theHamsta/nvim-dap-virtual-text", dependencies = { "nvim-neotest/nvim-nio" } },
+        { "rcarriga/nvim-dap-ui",            opts = {} },
+        { "theHamsta/nvim-dap-virtual-text", dependencies = { "nvim-neotest/nvim-nio" }, opts = {} },
 
         -- Language specific
         "mfussenegger/nvim-dap-python",
@@ -13,9 +13,6 @@ return {
 
     config = function()
         local dap = require("dap")
-
-        require("nvim-dap-virtual-text").setup({})
-        require("dapui").setup()
 
         require("dap-python").setup("python")
 

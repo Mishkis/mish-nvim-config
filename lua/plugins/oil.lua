@@ -2,10 +2,10 @@ local keys = require("helpers.keys")
 
 return {
     'stevearc/oil.nvim',
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
         skip_confirm_for_simple_edits = true
     },
-    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
         require("oil").setup()
 
