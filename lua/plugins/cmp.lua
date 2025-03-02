@@ -5,6 +5,7 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
         "neovim/nvim-lspconfig",
+        "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
@@ -74,10 +75,10 @@ return {
             },
 
             sources = cmp.config.sources({
-                { name = "snippy",   group_index = 1 },
-                { name = "lazydev",  group_index = 2 },
-                { name = "nvim_lsp", group_index = 3 },
-                { name = "buffer",   group_index = 4 },
+                { name = "snippy" },
+                { name = "lazydev" },
+                { name = "nvim_lsp" },
+                { name = "buffer" },
             }),
 
             experimental = {

@@ -1,6 +1,29 @@
 local keys = require("helpers.keys")
 
-local servers = {}
+local servers = {
+    ["rust_analyzer"] = {
+        ["rust-analyzer"] = {
+            imports = {
+                granularity = {
+                    group = "module",
+                },
+                prefix = "self",
+            },
+            cargo = {
+                buildScripts = {
+                    enable = true,
+                },
+            },
+            procMacro = {
+                enable = true
+            },
+            checkOnSave = {
+                command = "clippy"
+            }
+        },
+    },
+    ["lua_lus"] = {}
+}
 
 return {
     {
@@ -24,17 +47,19 @@ return {
                 keys.set("<Leader>h", vim.lsp.buf.hover, "[h]over word")
             end
 
-            require("mason-lspconfig").setup({
+            local mason_lspconfig = require("mason-lspconfig")
+            mason_lspconfig.setup({
                 ensure_installed = vim.tbl_keys(servers)
             })
 
             local capabilites = require("cmp_nvim_lsp").default_capabilities()
-            require("mason-lspconfig").setup_handlers {
+            mason_lspconfig.setup_handlers {
                 function(server_name)
                     local config = {
                         on_attach = on_attach,
                         settings = servers[server_name],
                         capabilites = capabilites,
+                        inlay_hints = { enable = true }
                     }
 
                     require("lspconfig")[server_name].setup(config)

@@ -1,4 +1,5 @@
-local languages = { "c", "lua", "vim", "vimdoc", "query", "python", "c_sharp", "javascript", "markdown", "toml", "json" }
+local languages = { "c", "lua", "vim", "vimdoc", "query", "python", "c_sharp", "javascript", "markdown", "toml", "json",
+    "rust" }
 
 return {
     "nvim-treesitter/nvim-treesitter",
@@ -6,7 +7,7 @@ return {
         "nvim-treesitter/nvim-treesitter-textobjects",
     },
     main = "nvim-treesitter.configs",
-    event = "VeryLazy",
+    lazy = false,
     opts = {
         ensure_installed = languages,
 
