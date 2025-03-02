@@ -96,7 +96,9 @@ local highlights = {
     -- Tab Line
     TabNeovim = { fg = col.insertModeFG, bg = col.insertModeBG },
     TabNeovimTrans = { fg = col.insertModeBG, bg = col.insertModeFG },
-    TabLeftStart = { fg = col.insertModeFG, bg = col.normalModeBG },
+    TabGithubTrans = { fg = col.insertModeFG, bg = col.diagnosticOrange },
+    TabGithub = { fg = col.orange, bg = col.diagnosticOrange },
+    TabLeftStart = { fg = col.diagnosticOrange, bg = col.normalModeBG },
     TabLeft = { link = "WinMode" },
     TabMain = { link = "WinModeTrans" },
     TabRight = { link = "WinMode" },
@@ -104,6 +106,27 @@ local highlights = {
     TabFlagBlue = { fg = col.transPink, bg = col.transBlue },
     TabFlagPink = { fg = col.transPink, bg = col.transWhite },
     TabFlagWhite = { fg = col.transWhite, bg = col.transPink },
+
+    -- Git Signs
+    DiffAdd = { bg = col.insertModeFG },
+    DiffDelete = { bg = col.replaceModeFG },
+    GitSignsAddInline = { fg = col.insertModeBG },
+    GitSignsDeleteInline = { fg = col.replaceModeBG },
+    GitSignsChangeInline = { fg = col.insertModeBG },
+    -- These are for the status line
+    GitSignsAdd = { fg = col.insertModeBG, bg = col.insertModeFG },
+    GitSignsDelete = { fg = col.replaceModeBG, bg = col.replaceModeFG },
+    GitSignsChange = { fg = col.orange, bg = col.diagnosticOrange },
+    CursorGitSignsAdd = { fg = col.insertModeFG, bg = col.insertModeBG },
+    CursorGitSignsDelete = { fg = col.replaceModeFG, bg = col.replaceModeBG },
+    CursorGitSignsChange = { fg = col.diagnosticOrange, bg = col.orange },
+    GitSignsStagedAdd = { fg = col.insertModeBG, bg = col.insertModeFG },
+    GitSignsStagedDelete = { fg = col.replaceModeBG, bg = col.replaceModeFG },
+    GitSignsStagedChange = { fg = col.orange, bg = col.diagnosticOrange },
+    CursorGitSignsStagedAdd = { fg = col.insertModeFG, bg = col.insertModeBG },
+    CursorGitSignsStagedDelete = { fg = col.replaceModeFG, bg = col.replaceModeBG },
+    CursorGitSignsStagedChange = { fg = col.diagnosticOrange, bg = col.orange },
+
 
     -- CMP Completion menu
     -- Defined in cmp.lua as it is lazy loaded and would override changes

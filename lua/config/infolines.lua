@@ -31,6 +31,14 @@ local function get_version()
     return "NVIM v" .. version.major .. "." .. version.minor .. "." .. version.patch
 end
 
+local function get_github_info()
+    local gitsigns = vim.b.gitsigns_status_dict
+    if gitsigns ~= nil then
+        return "  " .. vim.b.gitsigns_status_dict.head .. " " .. vim.b.gitsigns_status .. " "
+    end
+    return "  none "
+end
+
 local function get_current_lsp_server()
     local server = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
     if server == {} or server[1] == nil then
@@ -72,6 +80,17 @@ local function get_lsp_information()
 end
 
 -- The following are only used by the status column.
+
+local function get_gitsign(line_num, rel_line_num)
+    line_num = line_num - 1
+    local sign = vim.api.nvim_buf_get_extmarks(0, -1, { line_num, 0 }, { line_num, -1 },
+        { details = true, type = 'sign' })
+    if not vim.tbl_isempty(sign) then
+        sign = sign[1][4]
+        return hi((rel_line_num < 2 and "Cursor" or "") .. sign.sign_hl_group)
+    end
+    return ""
+end
 
 local function get_breakpoint_symbol(line_num, rel_line_num)
     local is_breakpoint = not vim.tbl_isempty(vim.fn.sign_getplaced(
@@ -147,7 +166,9 @@ function Tabbar()
         get_version() ..
         " " ..
         hi("TabNeovimTrans") ..
-        "   Windows: %{len(nvim_list_wins())} " ..
+        "   " .. os.date("%Y %B %d, %H:%M ") ..
+        hi("TabGithubTrans#%#TabGithub") ..
+        get_github_info() ..
         hi("TabLeftStart#%#TabLeft") ..
         " 󰆒  \"" ..
         shorten_string(registers.get("p")) ..
@@ -166,6 +187,7 @@ function Statuscolumn(ln, rn, vn)
     end
 
     return get_stc_highlight(ln, rn) ..
+        get_gitsign(ln, rn) ..
         get_breakpoint_symbol(ln, rn) ..
         get_fold_symbol(ln) ..
         " %2.{'" ..
