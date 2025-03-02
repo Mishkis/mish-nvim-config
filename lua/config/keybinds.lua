@@ -10,4 +10,4 @@ keys.set("<Leader><Leader>", function()
     vim.opt.tal = "%{%v:lua.Tabbar()%}"
 end, "Swaps the + and p registers for pasting.")
 
-keys.set("<Leader>c", "<cmd>noh<cr>", "[c]lear highlights.")
+keys.set("<Leader>ch", "<cmd>noh<sr>", "[c]lear [h]ighlights.")
