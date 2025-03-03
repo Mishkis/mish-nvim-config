@@ -3,6 +3,8 @@ local hl = require("helpers.highlights")
 local mode = require("helpers.mode")
 local registers = require("helpers.registers")
 
+vim.g.gitsigns_enabled = true;
+
 local function hi(highlight)
     return "%#" .. highlight .. "#"
 end
@@ -82,12 +84,17 @@ end
 -- The following are only used by the status column.
 
 local function get_gitsign(line_num, rel_line_num)
+    if (vim.g.gitsigns_enabled == false) then
+        return ""
+    end
     line_num = line_num - 1
     local sign = vim.api.nvim_buf_get_extmarks(0, -1, { line_num, 0 }, { line_num, -1 },
         { details = true, type = 'sign' })
     if not vim.tbl_isempty(sign) then
-        sign = sign[1][4]
-        return hi((rel_line_num < 2 and "Cursor" or "") .. sign.sign_hl_group)
+        local sign_hl = sign[1][4].sign_hl_group
+        if sign_hl ~= nil then
+            return hi((rel_line_num < 2 and "Cursor" or "") .. sign_hl)
+        end
     end
     return ""
 end

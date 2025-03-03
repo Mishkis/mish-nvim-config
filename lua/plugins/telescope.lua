@@ -10,6 +10,9 @@ return {
         {
             "ahmedkhalf/project.nvim",
             main = "project_nvim",
+            opts = {
+                detection_methods = { "pattern", "lsp" },
+            },
             config = true
         },
         "2kabhishek/nerdy.nvim",
