@@ -22,7 +22,7 @@ local servers = {
             }
         },
     },
-    ["lua_lus"] = {}
+    ["lua_ls"] = {},
 }
 
 return {
@@ -53,17 +53,14 @@ return {
             })
 
             local capabilites = require("cmp_nvim_lsp").default_capabilities()
-            mason_lspconfig.setup_handlers {
-                function(server_name)
-                    local config = {
-                        on_attach = on_attach,
-                        settings = servers[server_name],
-                        capabilites = capabilites,
-                        inlay_hints = { enable = true }
-                    }
 
-                    require("lspconfig")[server_name].setup(config)
-                end,
+            vim.lsp.config('*', {
+                capabilites = capabilites,
+                inlay_hints = { enable = true }
+            })
+
+            vim.lsp.config.rust_analyzer = {
+                settings = servers[rust_analyzer]
             }
         end,
     },
