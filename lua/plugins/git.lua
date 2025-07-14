@@ -14,7 +14,7 @@ return {
         opts = {
             -- Column diff is already implemented in infolines.
             -- signcolumn = false,
-            word_diff = true,
+            word_diff = false,
         },
         config = true,
         lazy = false,

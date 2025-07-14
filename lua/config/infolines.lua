@@ -3,7 +3,7 @@ local hl = require("helpers.highlights")
 local mode = require("helpers.mode")
 local registers = require("helpers.registers")
 
-vim.g.gitsigns_enabled = true;
+vim.g.gitsigns_enabled = false;
 
 local function hi(highlight)
     return "%#" .. highlight .. "#"
@@ -99,17 +99,6 @@ local function get_gitsign(line_num, rel_line_num)
     return ""
 end
 
-local function get_breakpoint_symbol(line_num, rel_line_num)
-    local is_breakpoint = not vim.tbl_isempty(vim.fn.sign_getplaced(
-        vim.api.nvim_get_current_buf(),
-        { group = "dap_breakpoints", lnum = line_num }
-    )[1].signs)
-
-    local highlight = (rel_line_num < 2) and hi("CursorBreakpointLineNr") or hi("BreakpointLineNr")
-
-    return is_breakpoint and highlight .. "" or " "
-end
-
 local function get_stc_highlight(line_num, rel_line_num)
     local highlight = ""
 
@@ -195,7 +184,6 @@ function Statuscolumn(ln, rn, vn)
 
     return get_stc_highlight(ln, rn) ..
         get_gitsign(ln, rn) ..
-        get_breakpoint_symbol(ln, rn) ..
         get_fold_symbol(ln) ..
         " %2.{'" ..
         rn .. "'}" .. (rn < 2 and "" .. hi("CursorLineNrTrans") .. "" or "" .. hi("LineNrTrans") .. "") .. "│"

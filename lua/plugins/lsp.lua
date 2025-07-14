@@ -17,9 +17,7 @@ local servers = {
             procMacro = {
                 enable = true
             },
-            checkOnSave = {
-                command = "clippy"
-            }
+            checkOnSave = true
         },
     },
     ["lua_ls"] = {},
@@ -39,29 +37,28 @@ return {
                 opts = { library = {} }
             },
 
-            "hrsh7th/cmp-nvim-lsp",
+            "saghen/blink.cmp"
+        },
+
+        keys = {
+            { "<Leader>h", vim.lsp.buf.hover, desc = "[h]over word" }
         },
 
         config = function()
-            local on_attach = function()
-                keys.set("<Leader>h", vim.lsp.buf.hover, "[h]over word")
-            end
-
             local mason_lspconfig = require("mason-lspconfig")
             mason_lspconfig.setup({
                 ensure_installed = vim.tbl_keys(servers)
             })
 
-            local capabilites = require("cmp_nvim_lsp").default_capabilities()
+            local capabilites = require("blink.cmp").get_lsp_capabilities()
 
-            vim.lsp.config('*', {
-                capabilites = capabilites,
-                inlay_hints = { enable = true }
-            })
-
-            vim.lsp.config.rust_analyzer = {
-                settings = servers[rust_analyzer]
-            }
+            for server, config in pairs(servers) do
+                vim.lsp.config(server, {
+                    capabilites = capabilites,
+                    inlay_hints = { enable = true },
+                    settings = config
+                })
+            end
         end,
     },
 }
